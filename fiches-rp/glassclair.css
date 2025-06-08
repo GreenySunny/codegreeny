@@ -6,9 +6,19 @@
   --policetitre: 'playfair display';
   --policetexte: 'figtree';
   --tailletitre: 12px;
-    color:#444;
+   color:var(--colortexte);
   }
   
+   .LallficheglassG a{
+   text-decoration:none;
+   color:var(--colortexte);
+  }
+  
+  .LglassgFrp-quote :hover a{
+   text-decoration:underline;
+   color:var(--colortexte);
+  }
+
  .LglassgFrp-container {
   letter-spacing: 1px;
   height: 100%;
@@ -57,7 +67,7 @@
 
 .LglassgFrp-quote {
   margin:auto;
-  width: 420px;
+  width: 400px;
   letter-spacing: 2px;
   font-weight: 400;
   font-family: 'arial', sans-serif;
