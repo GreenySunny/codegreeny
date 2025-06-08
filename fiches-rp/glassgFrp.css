@@ -1,3 +1,9 @@
+.glassgFrp-quote,
+.glassgFrp-title,
+.glassgFrpD1,
+.glassgFrpD2 {
+  text-align: center;
+}
 .glassgFrp-inside {margin: auto;position: relative;width:500px;z-index: 0;}
   
 .glassgFrp-container > *:not(.background-inside) {position: relative;z-index: 1;}
@@ -19,14 +25,18 @@
   }
   
  .glassgFrp-container {
-  letter-spacing: 1px;
+ letter-spacing: 1px;
   height: 100%;
   position: relative;
-  padding: 2rem;
+  padding: 0px; /* Réduit depuis 2rem */
   border-radius: 1px;
   border: 4px solid rgba(22, 22, 22, 1);
   color: #8F8E8C;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
 }
 
 .glassgFrp-inside {
@@ -55,7 +65,8 @@
   display: flex;
   justify-content: center;
   gap: 5px;
-  margin-top: 0px;
+  margin-top: 5px;
+  margin-bottom: 15px;
 }
 
 .glassgFrp-quote {
@@ -119,25 +130,26 @@
 }
 
 .glassgFrp-links-box {
-  clear: both;
-  line-height: 20px;
-  width: 400px;
-  margin: 20px auto 0 auto;
-  background:#161616;
+   line-height: 20px;
+  background: #161616;
   padding: 15px;
   font-family: var(--policetexte);
   font-size: 11px;
+  border-radius: 2px;
   text-align: justify;
-  overflow: auto;
-  border-radius:2px;
+  width: 100%;
+  max-width: 460px; /* élargi depuis 420px */
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
 }
 
 .glassgFrp-profile {
   width: 100%;
   max-width: 500px;
   margin: auto;
-  text-align: justify;
   font-size: 11px;
+  text-align: center;
 }
 
 .glassgFrp-credit {
