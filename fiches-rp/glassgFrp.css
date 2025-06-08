@@ -8,6 +8,16 @@
   --tailletitre: 12px;
   }
   
+ .allficheglassG a{
+   text-decoration:none;
+   color:inherit;
+  }
+  
+  .glassgFrp-quote :hover a{
+   text-decoration:underline;
+   color:inherit;
+  }
+  
  .glassgFrp-container {
   letter-spacing: 1px;
   height: 100%;
