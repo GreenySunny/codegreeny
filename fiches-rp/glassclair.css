@@ -19,18 +19,18 @@
    color:var(--colortexte);
   }
 
- .LglassgFrp-container {
+.LglassgFrp-container {
   letter-spacing: 1px;
   height: 100%;
   position: relative;
-  padding: 2rem;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem; /* padding-top réduit */
   border-radius: 2px;
   border: 4px solid rgba(236, 236, 236, 1);
   text-align: center;
 }
 
 .LglassgFrp-inside {
-  margin: auto;
+  margin: 0 auto;
   position: relative;
   width: 500px;
   z-index: 0;
@@ -55,19 +55,21 @@
   display: flex;
   justify-content: center;
   gap: 8px;
-  margin-top: 0px;
-  margin-bottom:5px;
+  margin-top: 0; /* évite un espace supplémentaire inutile */
+  margin-bottom: 5px;
 }
   
   .Lflou {
   backdrop-filter: blur(100px);
   background-color: rgba(236, 236, 236, 0.2);
   border-radius:2px;
+  width:450px;
+  margin:auto;
   }
 
 .LglassgFrp-quote {
-  margin:auto;
-  width: 400px;
+  margin:10px auto;
+  width: 420px;
   letter-spacing: 2px;
   font-weight: 400;
   font-family: 'arial', sans-serif;
@@ -79,8 +81,7 @@
 
 .LglassgFrp-header-wrap {
   text-align: center;
-  margin:auto;
-
+  margin: 0 15px;
 }
 
 .LglassgFrp-title {
@@ -92,7 +93,6 @@
   margin-left: 0;
   padding-left: 0;
   font-weight: 800;
-  
 }
 
   .LglassgFrpD1 {
@@ -128,10 +128,10 @@
 .LglassgFrp-texterp {
   clear: both;
   line-height: 20px;
-  width: 400px;
-  margin: 20px auto 0 auto;
+  width: 410px;
+  margin: 8px auto 0 auto;
   background:#ececec;
-  padding: 15px;
+  padding: 20px;
   font-family: var(--policetexte);
   font-size: 11px;
   text-align: justify;
