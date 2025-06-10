@@ -68,7 +68,7 @@
   }
 
 .LglassgFrp-quote {
-  margin:10px auto;
+  margin:1px auto;
   width: 420px;
   letter-spacing: 2px;
   font-weight: 400;
@@ -81,7 +81,9 @@
 
 .LglassgFrp-header-wrap {
   text-align: center;
-  margin: 0 15px;
+  margin:0 8px;
+  padding:5px 0 -1px 5px;
+ 
 }
 
 .LglassgFrp-title {
@@ -93,6 +95,7 @@
   margin-left: 0;
   padding-left: 0;
   font-weight: 800;
+   padding-top:5px;
 }
 
   .LglassgFrpD1 {
