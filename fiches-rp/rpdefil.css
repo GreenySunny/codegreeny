@@ -64,11 +64,11 @@
 
 .rp-defgreeny-heart {
   position: absolute;
-  bottom: -2px;
+  bottom: 1px;
   left: 50%;
-  transform: translateX(50%);
-  font-size: 22px;
-  line-height: 24px;
+  transform: translateX(60%);
+  font-size: 20px;
+  line-height: 20px;
   user-select: none;
 }
 .rp-defgreeny-scrolltext-wrapper {
@@ -92,7 +92,7 @@
 }
 .rp-defgreeny-maintext {
   width: 490px;
-  margin: 20px auto 0 auto;
+  margin: 30px auto 0 auto;
   padding: 20px 5px 20px 5px;
   font: 13px Figtree;
   line-height: 18px;
@@ -109,9 +109,6 @@
   overflow: hidden;
   position: relative;
 }
-  
-.rp-defgreeny-icon-wrapper {margin-right:50px;}
-
 .rp-defgreeny-avatar img, .rp-defgreeny-icon-wrapper img {
   position: absolute;
   top: 50%;
@@ -120,15 +117,4 @@
   height: 100%;
   object-fit: cover;
   transform: translate(-50%, -50%);
-}
-
-
-.rp-defgreeny-icon-emoji {
-  position: absolute;
-  bottom: -2px;
-  left: 50%;
-  transform: translateX(50%);
-  font-size: 22px;
-  line-height: 24px;
-  user-select: none;
 }
