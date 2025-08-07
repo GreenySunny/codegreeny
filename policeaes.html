@@ -85,19 +85,23 @@
         transform: (text) => toFullwidthSpacedBetweenWords(text, ' ')
       },
       {
-        name: "Option 3 : 【lettres】 encadrées",
+        name: "Option 3 : Texte fullwidth encadré 【﻿ 】",
+        transform: (text) => `【\uFEFF ${toFullwidth(text)} 】`
+      },
+      {
+        name: "Option 4 : 【lettres】 encadrées",
         transform: toBoxed
       },
       {
-        name: "Option 4 : Souligné (a̲e̲s̲...)",
+        name: "Option 5 : Souligné (a̲e̲s̲...)",
         transform: toUnderline
       },
       {
-        name: "Option 5 : Double souligné (a͟e͟s͟...)",
+        name: "Option 6 : Double souligné (a͟e͟s͟...)",
         transform: toDoubleUnderline
       },
       {
-        name: "Option 6 : Petites majuscules espacées",
+        name: "Option 7 : Petites majuscules espacées",
         transform: toSmalls
       }
     ];
@@ -162,7 +166,6 @@
 
         results.appendChild(block);
 
-        // Ajout du listener copie
         const btn = document.getElementById(`btn-${index}`);
         btn.addEventListener('click', () => {
           copyToClipboard(`output-${index}`, btn);
