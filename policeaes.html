@@ -1,58 +1,93 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Générateur de texte aesthetic</title>
   <style>
     body {
       background: #111;
       color: #eee;
       font-family: sans-serif;
-      text-align: center;
       padding: 40px;
+      max-width: 800px;
+      margin: auto;
     }
-    textarea, select {
-      width: 80%;
+    textarea {
+      width: 100%;
       font-size: 1.2em;
-      margin: 10px auto;
-      display: block;
+      margin-bottom: 30px;
       background: #222;
       color: #fff;
       border: none;
-      padding: 10px;
+      padding: 15px;
+      box-sizing: border-box;
+      border-radius: 6px;
+    }
+    .style-block {
+      background: #222;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    .style-block h2 {
+      font-size: 1.1em;
+      color: #ff9;
+      margin-bottom: 10px;
     }
     .output {
-      white-space: pre-wrap;
-      background: #222;
-      padding: 20px;
-      font-size: 1.5em;
-      border-radius: 10px;
-      margin-top: 20px;
+      font-size: 1.4em;
+      word-break: break-word;
+      margin-bottom: 10px;
+    }
+    button {
+      background: #444;
+      color: #fff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #666;
     }
   </style>
 </head>
 <body>
-  <h1>🎀 aesthetic text generator 🎀</h1>
-
+  <h1>🎀 Générateur de texte aesthetic 🎀</h1>
   <textarea id="input" placeholder="Tape ton texte ici..."></textarea>
 
-  <select id="style">
-    <option value="fullwidth">Option 1 : ａｅｓｔｈｅｔｉｃ</option>
-    <option value="fullwidth2">Option 2 : ａｅｓｔｈｅｔｉｃ (identique)</option>
-    <option value="boxed">Option 3 : 【a】【e】【s】...</option>
-    <option value="underline">Option 4 : a̲e̲s̲t̲...</option>
-    <option value="doubleunderline">Option 5 : a͟e͟s͟t͟...</option>
-    <option value="smalls">Option 6 : ᴀ ᴇ s ᴛ...</option>
-    <option value="fw_fullspace">Option 7 : ａｅｓｔｈｅｔｉｃ　ｓｐａｃｅｄ</option>
-    <option value="fw_halfspace">Option 8 : ａｅｓｔｈｅｔｉｃ ｓｐａｃｅｄ</option>
-  </select>
-
-  <div class="output" id="output"></div>
+  <div id="results"></div>
 
   <script>
     const input = document.getElementById('input');
-    const output = document.getElementById('output');
-    const style = document.getElementById('style');
+    const results = document.getElementById('results');
+
+    const styles = [
+      {
+        name: "Option 1 : Fullwidth + espace fullwidth",
+        transform: (text) => toFullwidthSpaced(text, '　')
+      },
+      {
+        name: "Option 2 : Fullwidth + espace normal",
+        transform: (text) => toFullwidthSpaced(text, ' ')
+      },
+      {
+        name: "Option 3 : 【lettres】 encadrées",
+        transform: toBoxed
+      },
+      {
+        name: "Option 4 : Souligné (a̲e̲s̲...)",
+        transform: toUnderline
+      },
+      {
+        name: "Option 5 : Double souligné (a͟e͟s͟...)",
+        transform: toDoubleUnderline
+      },
+      {
+        name: "Option 6 : Petites majuscules espacées",
+        transform: toSmalls
+      }
+    ];
 
     function toFullwidth(str) {
       return str.split('').map(c => {
@@ -98,41 +133,34 @@
       return str.split('').map(c => map[c] || c).join(' ');
     }
 
-    function updateOutput() {
+    function render() {
       const text = input.value;
-      const selected = style.value;
-      let transformed = '';
+      results.innerHTML = '';
 
-      switch (selected) {
-        case 'fullwidth':
-        case 'fullwidth2':
-          transformed = toFullwidth(text);
-          break;
-        case 'fw_fullspace':
-          transformed = toFullwidthSpaced(text, '　'); // Fullwidth space
-          break;
-        case 'fw_halfspace':
-          transformed = toFullwidthSpaced(text, ' ');  // Normal space
-          break;
-        case 'boxed':
-          transformed = toBoxed(text);
-          break;
-        case 'underline':
-          transformed = toUnderline(text);
-          break;
-        case 'doubleunderline':
-          transformed = toDoubleUnderline(text);
-          break;
-        case 'smalls':
-          transformed = toSmalls(text);
-          break;
-      }
+      styles.forEach((styleObj, index) => {
+        const transformed = styleObj.transform(text);
+        const block = document.createElement('div');
+        block.className = 'style-block';
 
-      output.textContent = transformed;
+        block.innerHTML = `
+          <h2>${styleObj.name}</h2>
+          <div class="output" id="output-${index}">${transformed}</div>
+          <button onclick="copyToClipboard('output-${index}')">Copier</button>
+        `;
+
+        results.appendChild(block);
+      });
     }
 
-    input.addEventListener('input', updateOutput);
-    style.addEventListener('change', updateOutput);
+    function copyToClipboard(id) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Texte copié !');
+      });
+    }
+
+    input.addEventListener('input', render);
+    window.copyToClipboard = copyToClipboard;
   </script>
 </body>
 </html>
