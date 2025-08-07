@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Générateur aesthetic & BBCode</title>
+  <title>Générateur aesthetic & BBCode avancé</title>
   <style>
     body {
       background: #111;
@@ -10,7 +10,7 @@
       font-family: sans-serif;
       padding: 40px;
       margin: auto;
-      max-width: 1200px;
+      max-width: 1800px;
       box-sizing: border-box;
     }
     h1 {
@@ -27,12 +27,14 @@
       background: #222;
       border-radius: 10px;
       padding: 20px;
-      flex: 1 1 400px;
+      flex: 1 1 300px;
       box-sizing: border-box;
-      min-width: 320px;
-      max-width: 600px;
+      min-width: 280px;
+      max-width: 430px;
+      display: flex;
+      flex-direction: column;
     }
-    textarea, input[type="color"] {
+    textarea, input[type="color"], select, input[type="text"] {
       width: 100%;
       font-size: 1.2em;
       margin-bottom: 20px;
@@ -52,6 +54,7 @@
       font-size: 1em;
       cursor: pointer;
       user-select: none;
+      margin-bottom: 8px;
     }
     input[type="checkbox"] {
       margin-right: 6px;
@@ -59,12 +62,17 @@
     }
     .options {
       margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      align-items: center;
     }
     .style-block {
       margin-bottom: 20px;
       background: #333;
       border-radius: 8px;
       padding: 15px;
+      flex-grow: 0;
     }
     .style-block h2 {
       color: #ff9;
@@ -96,6 +104,7 @@
       gap: 6px;
       user-select: none;
       transition: background 0.3s;
+      flex-shrink: 0;
     }
     button:hover {
       background: #777;
@@ -105,37 +114,53 @@
       line-height: 1;
     }
     /* Responsive */
-    @media (max-width: 900px) {
+    @media (max-width: 1600px) {
       .container {
-        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
       }
       .column {
         max-width: 100%;
+        margin-bottom: 30px;
       }
     }
   </style>
 </head>
 <body>
 
-  <h1>Générateur aesthetic & BBCode</h1>
+  <h1>Générateur aesthetic & BBCode avancé</h1>
 
   <div class="container">
-    <!-- Colonne gauche: aesthetic -->
+    <!-- Colonne 1 : aesthetic -->
     <div class="column" id="left-column">
-      <h2>Générateur aesthetic</h2>
+      <h2>Texte aesthetic</h2>
       <textarea id="inputAesthetic">texte ici</textarea>
       <div id="resultsAesthetic"></div>
     </div>
 
-    <!-- Colonne droite: générateur BBCode -->
-    <div class="column" id="right-column">
-      <h2>Générateur BBCode simple</h2>
+    <!-- Colonne 2 : BBCode simple -->
+    <div class="column" id="middle-column">
+      <h2>BBCode simple</h2>
       <textarea id="inputBBCode" placeholder="Tape ton texte ici...">texte ici</textarea>
       <div class="options">
         <label><input type="checkbox" id="bold"> Gras</label>
         <label><input type="checkbox" id="italic"> Italique</label>
         <label><input type="checkbox" id="underline"> Souligné</label>
-        <label>Couleur : <input type="color" id="color" value="#ffcc00"></label>
+      </div>
+      <div class="options" style="align-items:center;">
+        <label><input type="checkbox" id="enableColor"> Activer couleur</label>
+        <input type="color" id="color" value="#ffcc00" disabled />
+      </div>
+      <div class="options" style="max-width: 180px;">
+        <label for="sizeSelect">Taille du texte :</label>
+        <select id="sizeSelect">
+          <option value="">(par défaut)</option>
+          <option value="10">10</option>
+          <option value="12">12</option>
+          <option value="13">13</option>
+          <option value="14">14</option>
+          <option value="16">16</option>
+        </select>
       </div>
       <div class="style-block">
         <div class="output" id="outputBBCode"></div>
@@ -144,169 +169,304 @@
         </button>
       </div>
     </div>
+
+    <!-- Colonne 3 : Troisième générateur (symbole + couleur) -->
+    <div class="column" id="right-column">
+      <h2>Les symboles</h2>
+
+      <label for="symbolSelect">Insérer un symbole :</label>
+      <select id="symbolSelect" aria-label="Choisir un symbole">
+        <option value="">-- Choisir un symbole --</option>
+        <option>〇</option><option>○</option><option>◎</option><option>◯</option><option>◉</option><option>◌</option><option>◍</option><option>⊙</option><option>⦿</option><option>␥</option><option>⎙</option><option>⊚</option><option>⊛</option>
+        <option>◖</option><option>△</option><option>▿</option><option>▲</option><option>▼</option>
+        <option>■</option><option>□</option><option>▢</option><option>▣</option><option>▹</option><option>⊞</option><option>⊟</option><option>⊠</option><option>⊡</option>
+        <option>◆</option><option>◇</option><option>▨</option><option>▩</option>
+        <option>▥</option><option>▤</option><option>▦</option><option>▧</option><option>␥</option><option>⊂⊃</option>
+        <option>→</option><option>⇨</option><option>➔</option><option>➜</option><option>➝</option><option>➞</option><option>➟</option><option>➙</option><option>➚</option><option>➛</option><option>➜</option>
+        <option>⇆</option><option>⇵</option><option>↺</option><option>⇡</option><option>⇧</option><option>⇩</option><option>⇣</option><option>⤸</option><option>⩇</option>
+        <option>✶</option><option>✷</option><option>✸</option><option>✹</option><option>✦</option><option>✩</option><option>✧</option><option>★</option><option>☆</option><option>✵</option><option>✺</option><option>✻</option><option>✼</option><option>⚝</option><option>✪</option><option>✫</option><option>✬</option><option>✭</option><option>✮</option><option>✯</option><option>❖</option>
+        <option>❥</option><option>♡</option><option>♢</option><option>♡</option>
+        <option>✿</option><option>❀</option><option>❂</option><option>❃</option><option>❆</option><option>❈</option><option>❉</option><option>❊</option><option>❋</option><option>⨳</option><option>❧</option><option>༄</option>
+        <option>ıllı</option><option>⊂⊃</option><option>⊞</option><option>⊹</option><option>⨯</option><option>␥</option>
+        <option>⊗</option><option>⊕</option><option>⊖</option><option>⊘</option><option>⊙</option><option>⊚</option><option>⊛</option><option>⊜</option><option>⊝</option><option>⊞</option><option>⊟</option><option>⊠</option><option>⊡</option><option>⊢</option><option>⊣</option><option>⊤</option><option>⊥</option><option>⊦</option><option>⊧</option>
+      </select>
+
+      <div class="options" style="margin-top: 15px;">
+        <label for="colorSymbol">Couleur du symbole central :</label>
+        <input type="color" id="colorSymbol" value="#A6874F" />
+      </div>
+
+      <div class="style-block" style="margin-top: 20px;">
+        <label>Code BBCode généré :</label>
+        <pre id="bbcodePreview" style="background:#111; padding: 15px; border-radius: 6px; min-height: 60px; user-select: all; overflow-x:auto;">[center][size=18]✧ [color=#A6874F] ✧[/color] ✧[/size][/center]</pre>
+      </div>
+
+      <div class="style-block" style="margin-top: 10px;">
+        <label>Aperçu rendu simple :</label>
+        <div id="renderPreview" style="background:#222; padding: 15px; border-radius: 6px; min-height: 40px; font-size: 18px; text-align:center; user-select:none; color:#eee;">
+          ✧ <span id="colorSpan" style="color:#A6874F;">✧</span> ✧
+        </div>
+      </div>
+
+      <button id="btnThird" style="margin-top: 15px;">
+        <span class="icon">📋</span> Copier le code BBCode
+      </button>
+    </div>
+
+    <!-- Colonne 4 : Générateur simple 2 images centrées -->
+    <div class="column" id="fourth-column">
+      <h2>2 images centrées (carrés ou gifs)</h2>
+
+      <label for="imgUrl1">URL de la première image :</label>
+      <input type="text" id="imgUrl1" placeholder="https://..." value="https://i.pinimg.com/originals/f8/18/79/f81879366216a19d451e90b955974b9d.gif" />
+
+      <label for="imgUrl2">URL de la deuxième image :</label>
+      <input type="text" id="imgUrl2" placeholder="https://..." value="https://i.pinimg.com/originals/87/8c/83/878c83cece3f232e56cbc803b58507a5.gif" />
+
+      <div class="style-block" style="margin-top: 15px;">
+        <label>Code BBCode généré :</label>
+        <pre id="simpleImgBBCode" style="background:#111; padding: 15px; border-radius: 6px; min-height: 80px; user-select: all; overflow-x:auto;"></pre>
+      </div>
+
+      <div class="style-block" style="margin-top: 10px;">
+        <label>Aperçu rendu simple :</label>
+        <div id="simpleImgPreview" style="background:#222; padding: 15px; border-radius: 6px; min-height: 100px; text-align:center;">
+          <img id="previewImg1" src="" alt="Image 1" style="height: 93px; margin-right: 15px;" />
+          <img id="previewImg2" src="" alt="Image 2" style="height: 93px;" />
+        </div>
+      </div>
+
+      <button id="btnSimpleImgCopy" style="margin-top: 15px;">
+        <span class="icon">📋</span> Copier le code BBCode
+      </button>
+    </div>
   </div>
 
-  <script>
-    // === Générateur aesthetic (gauche) ===
-    const inputAesthetic = document.getElementById('inputAesthetic');
-    const resultsAesthetic = document.getElementById('resultsAesthetic');
+<script>
+  // -------- Colonne 1 : aesthetic --------
+  const inputAesthetic = document.getElementById('inputAesthetic');
+  const resultsAesthetic = document.getElementById('resultsAesthetic');
 
-    const styles = [
-      {
-        name: "Option 1 : Fullwidth + espace fullwidth entre mots",
-        transform: (text) => toFullwidthSpacedBetweenWords(text, '　')
-      },
-      {
-        name: "Option 2 : Fullwidth + espace normal entre mots",
-        transform: (text) => toFullwidthSpacedBetweenWords(text, ' ')
-      },
-      {
-        name: "Option 3 : Texte fullwidth encadré 【﻿ 】",
-        transform: (text) => `【\uFEFF ${toFullwidth(text)} 】`
-      },
-      {
-        name: "Option 4 : 【lettres】 encadrées",
-        transform: toBoxed
-      },
-      {
-        name: "Option 5 : Souligné (a̲e̲s̲...)",
-        transform: toUnderline
-      },
-      {
-        name: "Option 6 : Double souligné (a͟e͟s͟...)",
-        transform: toDoubleUnderline
-      },
-      {
-        name: "Option 7 : Petites majuscules espacées",
-        transform: toSmalls
+  const styles = [
+    {
+      name: "Option 3 : Texte fullwidth encadré 【﻿ 】",
+      transform: (text) => `【\uFEFF ${toFullwidth(text)} 】`
+    },
+    {
+      name: "Option 4 : 【lettres】 encadrées",
+      transform: toBoxed
+    },
+    {
+      name: "Option 5 : Souligné (a̲e̲s̲...)",
+      transform: toUnderline
+    },
+    {
+      name: "Option 6 : Double souligné (a͟e͟s͟...)",
+      transform: toDoubleUnderline
+    },
+    {
+      name: "Option 7 : Petites majuscules espacées",
+      transform: toSmalls
+    }
+  ];
+
+  function toFullwidth(str) {
+    return str.split('').map(c => {
+      const code = c.charCodeAt(0);
+      if (c === ' ') return '　';
+      if (code >= 33 && code <= 126) {
+        return String.fromCharCode(code + 65248);
       }
-    ];
+      return c;
+    }).join('');
+  }
 
-    function toFullwidth(str) {
-      return str.split('').map(c => {
-        const code = c.charCodeAt(0);
-        if (c === ' ') return '　';
-        if (code >= 33 && code <= 126) {
-          return String.fromCharCode(code + 65248);
-        }
-        return c;
-      }).join('');
-    }
+  function toBoxed(str) {
+    return str.split('').map(c => (c === ' ') ? ' ' : `【${c}】`).join('');
+  }
 
-    function toFullwidthSpacedBetweenWords(str, spaceChar = ' ') {
-      return str.split(' ').map(word => toFullwidth(word)).join(spaceChar);
-    }
+  function toUnderline(str) {
+    return str.split('').map(c => c + '\u0332').join('');
+  }
 
-    function toBoxed(str) {
-      return str.split('').map(c => (c === ' ') ? ' ' : `【${c}】`).join('');
-    }
+  function toDoubleUnderline(str) {
+    return str.split('').map(c => c + '\u035F').join('');
+  }
 
-    function toUnderline(str) {
-      return str.split('').map(c => c + '\u0332').join('');
-    }
+  function toSmalls(str) {
+    const map = {
+      a: 'ᴀ', b: 'ʙ', c: 'ᴄ', d: 'ᴅ', e: 'ᴇ', f: 'ғ', g: 'ɢ', h: 'ʜ', i: 'ɪ', j: 'ᴊ',
+      k: 'ᴋ', l: 'ʟ', m: 'ᴍ', n: 'ɴ', o: 'ᴏ', p: 'ᴘ', q: 'ǫ', r: 'ʀ', s: 's', t: 'ᴛ',
+      u: 'ᴜ', v: 'ᴠ', w: 'ᴡ', x: 'x', y: 'ʏ', z: 'ᴢ',
+      A: 'ᴀ', B: 'ʙ', C: 'ᴄ', D: 'ᴅ', E: 'ᴇ', F: 'ғ', G: 'ɢ', H: 'ʜ', I: 'ɪ', J: 'ᴊ',
+      K: 'ᴋ', L: 'ʟ', M: 'ᴍ', N: 'ɴ', O: 'ᴏ', P: 'ᴘ', Q: 'ǫ', R: 'ʀ', S: 's', T: 'ᴛ',
+      U: 'ᴜ', V: 'ᴠ', W: 'ᴡ', X: 'x', Y: 'ʏ', Z: 'ᴢ',
+      ' ': ' '
+    };
+    return str.split('').map(c => map[c] || c).join('');
+  }
 
-    function toDoubleUnderline(str) {
-      return str.split('').map(c => c + '\u035F').join('');
-    }
+  function renderAesthetic() {
+    const text = inputAesthetic.value.trim();
+    resultsAesthetic.innerHTML = '';
+    if (!text) return;
 
-    function toSmalls(str) {
-      const map = {
-        a: 'ᴀ', b: 'ʙ', c: 'ᴄ', d: 'ᴅ', e: 'ᴇ', f: 'ғ', g: 'ɢ', h: 'ʜ', i: 'ɪ', j: 'ᴊ',
-        k: 'ᴋ', l: 'ʟ', m: 'ᴍ', n: 'ɴ', o: 'ᴏ', p: 'ᴘ', q: 'ǫ', r: 'ʀ', s: 's', t: 'ᴛ',
-        u: 'ᴜ', v: 'ᴠ', w: 'ᴡ', x: 'x', y: 'ʏ', z: 'ᴢ',
-        A: 'ᴀ', B: 'ʙ', C: 'ᴄ', D: 'ᴅ', E: 'ᴇ', F: 'ғ', G: 'ɢ', H: 'ʜ', I: 'ɪ', J: 'ᴊ',
-        K: 'ᴋ', L: 'ʟ', M: 'ᴍ', N: 'ɴ', O: 'ᴏ', P: 'ᴘ', Q: 'ǫ', R: 'ʀ', S: 's', T: 'ᴛ',
-        U: 'ᴜ', V: 'ᴠ', W: 'ᴡ', X: 'x', Y: 'ʏ', Z: 'ᴢ',
-        ' ': ' '
-      };
-      return str.split('').map(c => map[c] || c).join(' ');
-    }
+    styles.forEach(({name, transform}) => {
+      const div = document.createElement('div');
+      div.className = 'style-block';
 
-    function renderAesthetic() {
-      const text = inputAesthetic.value;
-      resultsAesthetic.innerHTML = '';
+      const label = document.createElement('div');
+      label.textContent = name;
+      label.style.marginBottom = '8px';
 
-      styles.forEach((styleObj, index) => {
-        const transformed = styleObj.transform(text);
-        const block = document.createElement('div');
-        block.className = 'style-block';
+      const output = document.createElement('div');
+      output.className = 'output';
+      output.textContent = transform(text);
 
-        block.innerHTML = `
-          <h2>${styleObj.name}</h2>
-          <div class="output" id="output-${index}">${transformed}</div>
-          <button id="btn-${index}" aria-label="Copier le texte">
-            <span class="icon">📋</span> Copier
-          </button>
-        `;
-
-        resultsAesthetic.appendChild(block);
-
-        const btn = document.getElementById(`btn-${index}`);
-        btn.addEventListener('click', () => {
-          copyToClipboard(`output-${index}`, btn);
+      const btn = document.createElement('button');
+      btn.innerHTML = '<span class="icon">📋</span> Copier';
+      btn.addEventListener('click', () => {
+        navigator.clipboard.writeText(output.textContent).then(() => {
+          const icon = btn.querySelector('.icon');
+          icon.textContent = '✅';
+          btn.disabled = true;
+          setTimeout(() => {
+            icon.textContent = '📋';
+            btn.disabled = false;
+          }, 2000);
         });
       });
-    }
 
-    // === Générateur BBCode (droite) ===
-    const inputBBCode = document.getElementById('inputBBCode');
-    const outputBBCode = document.getElementById('outputBBCode');
-    const btnBBCode = document.getElementById('btnBBCode');
-    const cbBold = document.getElementById('bold');
-    const cbItalic = document.getElementById('italic');
-    const cbUnderline = document.getElementById('underline');
-    const colorInput = document.getElementById('color');
-
-    function generateBBCode() {
-      let text = inputBBCode.value;
-
-      // Échapper [ ] éventuels dans le texte pour éviter erreurs (optionnel)
-      text = text.replace(/\[/g, '\\[').replace(/\]/g, '\\]');
-
-      if (cbBold.checked) text = `[b]${text}[/b]`;
-      if (cbItalic.checked) text = `[i]${text}[/i]`;
-      if (cbUnderline.checked) text = `[u]${text}[/u]`;
-      if (colorInput.value) text = `[color=${colorInput.value}]${text}[/color]`;
-
-      outputBBCode.textContent = text;
-    }
-
-    btnBBCode.addEventListener('click', () => {
-      navigator.clipboard.writeText(outputBBCode.textContent).then(() => {
-        const icon = btnBBCode.querySelector('.icon');
-        icon.textContent = '✅';
-        btnBBCode.disabled = true;
-        setTimeout(() => {
-          icon.textContent = '📋';
-          btnBBCode.disabled = false;
-        }, 2000);
-      });
+      div.appendChild(label);
+      div.appendChild(output);
+      div.appendChild(btn);
+      resultsAesthetic.appendChild(div);
     });
+  }
+  inputAesthetic.addEventListener('input', renderAesthetic);
+  renderAesthetic();
 
-    inputBBCode.addEventListener('input', generateBBCode);
-    cbBold.addEventListener('change', generateBBCode);
-    cbItalic.addEventListener('change', generateBBCode);
-    cbUnderline.addEventListener('change', generateBBCode);
-    colorInput.addEventListener('input', generateBBCode);
+  // -------- Colonne 2 : BBCode simple --------
+  const inputBBCode = document.getElementById('inputBBCode');
+  const outputBBCode = document.getElementById('outputBBCode');
+  const btnBBCode = document.getElementById('btnBBCode');
+  const bold = document.getElementById('bold');
+  const italic = document.getElementById('italic');
+  const underline = document.getElementById('underline');
+  const enableColor = document.getElementById('enableColor');
+  const colorInput = document.getElementById('color');
+  const sizeSelect = document.getElementById('sizeSelect');
 
-    window.copyToClipboard = (id, btn) => {
-      const text = document.getElementById(id).innerText;
-      navigator.clipboard.writeText(text).then(() => {
-        const icon = btn.querySelector('.icon');
-        icon.textContent = '✅';
-        btn.disabled = true;
-        setTimeout(() => {
-          icon.textContent = '📋';
-          btn.disabled = false;
-        }, 2000);
-      });
-    };
+  function updateBBCode() {
+    let text = inputBBCode.value.trim();
+    if (!text) {
+      outputBBCode.textContent = '';
+      return;
+    }
+    if (bold.checked) text = `[b]${text}[/b]`;
+    if (italic.checked) text = `[i]${text}[/i]`;
+    if (underline.checked) text = `[u]${text}[/u]`;
+    if (enableColor.checked) text = `[color=${colorInput.value}]${text}[/color]`;
+    if (sizeSelect.value) text = `[size=${sizeSelect.value}]${text}[/size]`;
 
-    // Initial render
-    window.onload = () => {
-      renderAesthetic();
-      generateBBCode();
-    };
-  </script>
+    outputBBCode.textContent = text;
+  }
+
+  [inputBBCode, bold, italic, underline, enableColor, colorInput, sizeSelect].forEach(el => {
+    el.addEventListener('input', updateBBCode);
+  });
+
+  enableColor.addEventListener('change', () => {
+    colorInput.disabled = !enableColor.checked;
+    updateBBCode();
+  });
+
+  btnBBCode.addEventListener('click', () => {
+    navigator.clipboard.writeText(outputBBCode.textContent).then(() => {
+      const icon = btnBBCode.querySelector('.icon');
+      icon.textContent = '✅';
+      btnBBCode.disabled = true;
+      setTimeout(() => {
+        icon.textContent = '📋';
+        btnBBCode.disabled = false;
+      }, 2000);
+    });
+  });
+
+  updateBBCode();
+
+  // -------- Colonne 3 : symbole + couleur --------
+  const symbolSelect = document.getElementById('symbolSelect');
+  const colorSymbol = document.getElementById('colorSymbol');
+  const bbcodePreview = document.getElementById('bbcodePreview');
+  const renderPreview = document.getElementById('renderPreview');
+  const colorSpan = document.getElementById('colorSpan');
+  const btnThird = document.getElementById('btnThird');
+
+  function updateThirdGenerator() {
+    const symb = symbolSelect.value || '✧';
+    const color = colorSymbol.value || '#A6874F';
+
+    const code = `[center][size=18]${symb} [color=${color}] ${symb}[/color] ${symb}[/size][/center]`;
+    bbcodePreview.textContent = code;
+
+    colorSpan.textContent = symb;
+    colorSpan.style.color = color;
+    renderPreview.childNodes[0].textContent = symb + ' ';
+  }
+  symbolSelect.addEventListener('change', updateThirdGenerator);
+  colorSymbol.addEventListener('input', updateThirdGenerator);
+
+  btnThird.addEventListener('click', () => {
+    navigator.clipboard.writeText(bbcodePreview.textContent).then(() => {
+      const icon = btnThird.querySelector('.icon');
+      icon.textContent = '✅';
+      btnThird.disabled = true;
+      setTimeout(() => {
+        icon.textContent = '📋';
+        btnThird.disabled = false;
+      }, 2000);
+    });
+  });
+
+  updateThirdGenerator();
+
+  // -------- Colonne 4 : 2 images centrées --------
+  const imgUrl1 = document.getElementById('imgUrl1');
+  const imgUrl2 = document.getElementById('imgUrl2');
+  const simpleImgBBCode = document.getElementById('simpleImgBBCode');
+  const previewImg1 = document.getElementById('previewImg1');
+  const previewImg2 = document.getElementById('previewImg2');
+  const btnSimpleImgCopy = document.getElementById('btnSimpleImgCopy');
+
+  function updateSimpleImgGenerator() {
+    const url1 = imgUrl1.value.trim();
+    const url2 = imgUrl2.value.trim();
+
+    const bbcode = `[center][img(93px,auto)]${url1}[/img] [img(93px,auto)]${url2}[/img][/center]`;
+    simpleImgBBCode.textContent = bbcode;
+
+    previewImg1.src = url1 || '';
+    previewImg2.src = url2 || '';
+  }
+
+  imgUrl1.addEventListener('input', updateSimpleImgGenerator);
+  imgUrl2.addEventListener('input', updateSimpleImgGenerator);
+
+  btnSimpleImgCopy.addEventListener('click', () => {
+    navigator.clipboard.writeText(simpleImgBBCode.textContent).then(() => {
+      const icon = btnSimpleImgCopy.querySelector('.icon');
+      icon.textContent = '✅';
+      btnSimpleImgCopy.disabled = true;
+      setTimeout(() => {
+        icon.textContent = '📋';
+        btnSimpleImgCopy.disabled = false;
+      }, 2000);
+    });
+  });
+
+  updateSimpleImgGenerator();
+</script>
+
 </body>
 </html>
