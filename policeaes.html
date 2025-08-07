@@ -43,6 +43,8 @@
     <option value="underline">Option 4 : a̲e̲s̲t̲...</option>
     <option value="doubleunderline">Option 5 : a͟e͟s͟t͟...</option>
     <option value="smalls">Option 6 : ᴀ ᴇ s ᴛ...</option>
+    <option value="fw_fullspace">Option 7 : ａｅｓｔｈｅｔｉｃ　ｓｐａｃｅｄ</option>
+    <option value="fw_halfspace">Option 8 : ａｅｓｔｈｅｔｉｃ ｓｐａｃｅｄ</option>
   </select>
 
   <div class="output" id="output"></div>
@@ -63,11 +65,16 @@
       }).join('');
     }
 
-    function toBoxed(str) {
+    function toFullwidthSpaced(str, space = ' ') {
       return str.split('').map(c => {
-        if (c === ' ') return ' ';
-        return `【${c}】`;
-      }).join('');
+        const code = c.charCodeAt(0);
+        let full = (c === ' ') ? '　' : (code >= 33 && code <= 126) ? String.fromCharCode(code + 65248) : c;
+        return full + space;
+      }).join('').trim();
+    }
+
+    function toBoxed(str) {
+      return str.split('').map(c => (c === ' ') ? ' ' : `【${c}】`).join('');
     }
 
     function toUnderline(str) {
@@ -100,6 +107,12 @@
         case 'fullwidth':
         case 'fullwidth2':
           transformed = toFullwidth(text);
+          break;
+        case 'fw_fullspace':
+          transformed = toFullwidthSpaced(text, '　'); // Fullwidth space
+          break;
+        case 'fw_halfspace':
+          transformed = toFullwidthSpaced(text, ' ');  // Normal space
           break;
         case 'boxed':
           transformed = toBoxed(text);
