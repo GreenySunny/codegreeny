@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Générateur de texte aesthetic</title>
+  <style>
+    body {
+      background: #111;
+      color: #eee;
+      font-family: sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+    textarea, select {
+      width: 80%;
+      font-size: 1.2em;
+      margin: 10px auto;
+      display: block;
+      background: #222;
+      color: #fff;
+      border: none;
+      padding: 10px;
+    }
+    .output {
+      white-space: pre-wrap;
+      background: #222;
+      padding: 20px;
+      font-size: 1.5em;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎀 aesthetic text generator 🎀</h1>
+
+  <textarea id="input" placeholder="Tape ton texte ici..."></textarea>
+
+  <select id="style">
+    <option value="fullwidth">Option 1 : ａｅｓｔｈｅｔｉｃ</option>
+    <option value="fullwidth2">Option 2 : ａｅｓｔｈｅｔｉｃ (identique)</option>
+    <option value="boxed">Option 3 : 【a】【e】【s】...</option>
+    <option value="underline">Option 4 : a̲e̲s̲t̲...</option>
+    <option value="doubleunderline">Option 5 : a͟e͟s͟t͟...</option>
+    <option value="smalls">Option 6 : ᴀ ᴇ s ᴛ...</option>
+  </select>
+
+  <div class="output" id="output"></div>
+
+  <script>
+    const input = document.getElementById('input');
+    const output = document.getElementById('output');
+    const style = document.getElementById('style');
+
+    function toFullwidth(str) {
+      return str.split('').map(c => {
+        const code = c.charCodeAt(0);
+        if (c === ' ') return '　';
+        if (code >= 33 && code <= 126) {
+          return String.fromCharCode(code + 65248);
+        }
+        return c;
+      }).join('');
+    }
+
+    function toBoxed(str) {
+      return str.split('').map(c => {
+        if (c === ' ') return ' ';
+        return `【${c}】`;
+      }).join('');
+    }
+
+    function toUnderline(str) {
+      return str.split('').map(c => c + '\u0332').join('');
+    }
+
+    function toDoubleUnderline(str) {
+      return str.split('').map(c => c + '\u035F').join('');
+    }
+
+    function toSmalls(str) {
+      const map = {
+        a: 'ᴀ', b: 'ʙ', c: 'ᴄ', d: 'ᴅ', e: 'ᴇ', f: 'ғ', g: 'ɢ', h: 'ʜ', i: 'ɪ', j: 'ᴊ',
+        k: 'ᴋ', l: 'ʟ', m: 'ᴍ', n: 'ɴ', o: 'ᴏ', p: 'ᴘ', q: 'ǫ', r: 'ʀ', s: 's', t: 'ᴛ',
+        u: 'ᴜ', v: 'ᴠ', w: 'ᴡ', x: 'x', y: 'ʏ', z: 'ᴢ',
+        A: 'ᴀ', B: 'ʙ', C: 'ᴄ', D: 'ᴅ', E: 'ᴇ', F: 'ғ', G: 'ɢ', H: 'ʜ', I: 'ɪ', J: 'ᴊ',
+        K: 'ᴋ', L: 'ʟ', M: 'ᴍ', N: 'ɴ', O: 'ᴏ', P: 'ᴘ', Q: 'ǫ', R: 'ʀ', S: 's', T: 'ᴛ',
+        U: 'ᴜ', V: 'ᴠ', W: 'ᴡ', X: 'x', Y: 'ʏ', Z: 'ᴢ',
+        ' ': ' '
+      };
+      return str.split('').map(c => map[c] || c).join(' ');
+    }
+
+    function updateOutput() {
+      const text = input.value;
+      const selected = style.value;
+      let transformed = '';
+
+      switch (selected) {
+        case 'fullwidth':
+        case 'fullwidth2':
+          transformed = toFullwidth(text);
+          break;
+        case 'boxed':
+          transformed = toBoxed(text);
+          break;
+        case 'underline':
+          transformed = toUnderline(text);
+          break;
+        case 'doubleunderline':
+          transformed = toDoubleUnderline(text);
+          break;
+        case 'smalls':
+          transformed = toSmalls(text);
+          break;
+      }
+
+      output.textContent = transformed;
+    }
+
+    input.addEventListener('input', updateOutput);
+    style.addEventListener('change', updateOutput);
+  </script>
+</body>
+</html>
