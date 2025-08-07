@@ -50,9 +50,18 @@
       border-radius: 5px;
       cursor: pointer;
       font-size: 0.9em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      user-select: none;
+      transition: background 0.3s;
     }
     button:hover {
       background: #666;
+    }
+    button .icon {
+      font-size: 1.2em;
+      line-height: 1;
     }
   </style>
 </head>
@@ -106,7 +115,6 @@
 
     // Fullwidth + espace (fullwidth ou normal) entre mots seulement
     function toFullwidthSpacedBetweenWords(str, spaceChar = ' ') {
-      // Découpe par mots
       return str.split(' ').map(word => toFullwidth(word)).join(spaceChar);
     }
 
@@ -147,25 +155,37 @@
         block.innerHTML = `
           <h2>${styleObj.name}</h2>
           <div class="output" id="output-${index}">${transformed}</div>
-          <button onclick="copyToClipboard('output-${index}')">Copier</button>
+          <button id="btn-${index}" aria-label="Copier le texte">
+            <span class="icon">📋</span> Copier
+          </button>
         `;
 
         results.appendChild(block);
+
+        // Ajout du listener copie
+        const btn = document.getElementById(`btn-${index}`);
+        btn.addEventListener('click', () => {
+          copyToClipboard(`output-${index}`, btn);
+        });
       });
     }
 
-    function copyToClipboard(id) {
+    function copyToClipboard(id, btn) {
       const text = document.getElementById(id).innerText;
       navigator.clipboard.writeText(text).then(() => {
-        alert('Texte copié !');
+        const icon = btn.querySelector('.icon');
+        icon.textContent = '✅';
+        btn.disabled = true;
+        setTimeout(() => {
+          icon.textContent = '📋';
+          btn.disabled = false;
+        }, 2000);
       });
     }
 
     input.addEventListener('input', render);
-
     window.copyToClipboard = copyToClipboard;
 
-    // Rend une première fois au chargement avec texte d'exemple
     window.onload = render;
   </script>
 </body>
