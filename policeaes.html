@@ -2,48 +2,89 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>Générateur de texte aesthetic</title>
+  <title>Générateur aesthetic & BBCode</title>
   <style>
     body {
       background: #111;
       color: #eee;
       font-family: sans-serif;
       padding: 40px;
-      max-width: 800px;
       margin: auto;
+      max-width: 1200px;
+      box-sizing: border-box;
     }
-    textarea {
+    h1 {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .container {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .column {
+      background: #222;
+      border-radius: 10px;
+      padding: 20px;
+      flex: 1 1 400px;
+      box-sizing: border-box;
+      min-width: 320px;
+      max-width: 600px;
+    }
+    textarea, input[type="color"] {
       width: 100%;
       font-size: 1.2em;
-      margin-bottom: 30px;
-      background: #222;
+      margin-bottom: 20px;
+      background: #333;
       color: #fff;
       border: none;
       padding: 15px;
-      box-sizing: border-box;
       border-radius: 6px;
+      box-sizing: border-box;
       resize: vertical;
       min-height: 80px;
     }
-    .style-block {
-      background: #222;
-      border-radius: 10px;
-      padding: 15px 20px;
+    label {
+      display: inline-flex;
+      align-items: center;
+      margin-right: 15px;
+      font-size: 1em;
+      cursor: pointer;
+      user-select: none;
+    }
+    input[type="checkbox"] {
+      margin-right: 6px;
+      cursor: pointer;
+    }
+    .options {
       margin-bottom: 20px;
     }
+    .style-block {
+      margin-bottom: 20px;
+      background: #333;
+      border-radius: 8px;
+      padding: 15px;
+    }
     .style-block h2 {
-      font-size: 1.05em;
       color: #ff9;
       margin-bottom: 8px;
+      font-size: 1.05em;
     }
     .output {
       font-size: 1.1em;
       word-break: break-word;
       margin-bottom: 10px;
       user-select: all;
+      background: #222;
+      padding: 10px;
+      border-radius: 6px;
+      white-space: pre-wrap;
+      font-family: monospace, monospace;
+      min-height: 60px;
     }
     button {
-      background: #444;
+      background: #555;
       color: #fff;
       border: none;
       padding: 7px 12px;
@@ -57,23 +98,58 @@
       transition: background 0.3s;
     }
     button:hover {
-      background: #666;
+      background: #777;
     }
     button .icon {
       font-size: 1.2em;
       line-height: 1;
     }
+    /* Responsive */
+    @media (max-width: 900px) {
+      .container {
+        flex-direction: column;
+      }
+      .column {
+        max-width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
-  <h1>🎀 Générateur de texte aesthetic 🎀</h1>
-  <textarea id="input">texte ici</textarea>
 
-  <div id="results"></div>
+  <h1>Générateur aesthetic & BBCode</h1>
+
+  <div class="container">
+    <!-- Colonne gauche: aesthetic -->
+    <div class="column" id="left-column">
+      <h2>Générateur aesthetic</h2>
+      <textarea id="inputAesthetic">texte ici</textarea>
+      <div id="resultsAesthetic"></div>
+    </div>
+
+    <!-- Colonne droite: générateur BBCode -->
+    <div class="column" id="right-column">
+      <h2>Générateur BBCode simple</h2>
+      <textarea id="inputBBCode" placeholder="Tape ton texte ici...">texte ici</textarea>
+      <div class="options">
+        <label><input type="checkbox" id="bold"> Gras</label>
+        <label><input type="checkbox" id="italic"> Italique</label>
+        <label><input type="checkbox" id="underline"> Souligné</label>
+        <label>Couleur : <input type="color" id="color" value="#ffcc00"></label>
+      </div>
+      <div class="style-block">
+        <div class="output" id="outputBBCode"></div>
+        <button id="btnBBCode">
+          <span class="icon">📋</span> Copier
+        </button>
+      </div>
+    </div>
+  </div>
 
   <script>
-    const input = document.getElementById('input');
-    const results = document.getElementById('results');
+    // === Générateur aesthetic (gauche) ===
+    const inputAesthetic = document.getElementById('inputAesthetic');
+    const resultsAesthetic = document.getElementById('resultsAesthetic');
 
     const styles = [
       {
@@ -117,7 +193,6 @@
       }).join('');
     }
 
-    // Fullwidth + espace (fullwidth ou normal) entre mots seulement
     function toFullwidthSpacedBetweenWords(str, spaceChar = ' ') {
       return str.split(' ').map(word => toFullwidth(word)).join(spaceChar);
     }
@@ -147,9 +222,9 @@
       return str.split('').map(c => map[c] || c).join(' ');
     }
 
-    function render() {
-      const text = input.value;
-      results.innerHTML = '';
+    function renderAesthetic() {
+      const text = inputAesthetic.value;
+      resultsAesthetic.innerHTML = '';
 
       styles.forEach((styleObj, index) => {
         const transformed = styleObj.transform(text);
@@ -164,7 +239,7 @@
           </button>
         `;
 
-        results.appendChild(block);
+        resultsAesthetic.appendChild(block);
 
         const btn = document.getElementById(`btn-${index}`);
         btn.addEventListener('click', () => {
@@ -173,7 +248,48 @@
       });
     }
 
-    function copyToClipboard(id, btn) {
+    // === Générateur BBCode (droite) ===
+    const inputBBCode = document.getElementById('inputBBCode');
+    const outputBBCode = document.getElementById('outputBBCode');
+    const btnBBCode = document.getElementById('btnBBCode');
+    const cbBold = document.getElementById('bold');
+    const cbItalic = document.getElementById('italic');
+    const cbUnderline = document.getElementById('underline');
+    const colorInput = document.getElementById('color');
+
+    function generateBBCode() {
+      let text = inputBBCode.value;
+
+      // Échapper [ ] éventuels dans le texte pour éviter erreurs (optionnel)
+      text = text.replace(/\[/g, '\\[').replace(/\]/g, '\\]');
+
+      if (cbBold.checked) text = `[b]${text}[/b]`;
+      if (cbItalic.checked) text = `[i]${text}[/i]`;
+      if (cbUnderline.checked) text = `[u]${text}[/u]`;
+      if (colorInput.value) text = `[color=${colorInput.value}]${text}[/color]`;
+
+      outputBBCode.textContent = text;
+    }
+
+    btnBBCode.addEventListener('click', () => {
+      navigator.clipboard.writeText(outputBBCode.textContent).then(() => {
+        const icon = btnBBCode.querySelector('.icon');
+        icon.textContent = '✅';
+        btnBBCode.disabled = true;
+        setTimeout(() => {
+          icon.textContent = '📋';
+          btnBBCode.disabled = false;
+        }, 2000);
+      });
+    });
+
+    inputBBCode.addEventListener('input', generateBBCode);
+    cbBold.addEventListener('change', generateBBCode);
+    cbItalic.addEventListener('change', generateBBCode);
+    cbUnderline.addEventListener('change', generateBBCode);
+    colorInput.addEventListener('input', generateBBCode);
+
+    window.copyToClipboard = (id, btn) => {
       const text = document.getElementById(id).innerText;
       navigator.clipboard.writeText(text).then(() => {
         const icon = btn.querySelector('.icon');
@@ -184,12 +300,13 @@
           btn.disabled = false;
         }, 2000);
       });
-    }
+    };
 
-    input.addEventListener('input', render);
-    window.copyToClipboard = copyToClipboard;
-
-    window.onload = render;
+    // Initial render
+    window.onload = () => {
+      renderAesthetic();
+      generateBBCode();
+    };
   </script>
 </body>
 </html>
