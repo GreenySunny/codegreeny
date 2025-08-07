@@ -7,7 +7,7 @@
     body {
       background: #111;
       color: #eee;
-      font-family: sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       padding: 40px;
       margin: auto;
       max-width: 1800px;
@@ -34,7 +34,14 @@
       display: flex;
       flex-direction: column;
     }
-    textarea, input[type="color"], select, input[type="text"] {
+    h2 {
+      margin-bottom: 20px;
+      text-align: center;
+      color: #ffcc66;
+      font-weight: 600;
+      user-select: none;
+    }
+    textarea, input[type="color"], select, input[type="text"], pre[contenteditable="true"] {
       width: 100%;
       font-size: 1.2em;
       margin-bottom: 20px;
@@ -46,6 +53,10 @@
       box-sizing: border-box;
       resize: vertical;
       min-height: 80px;
+      font-family: monospace, monospace;
+      outline: none;
+      white-space: pre-wrap;
+      user-select: text;
     }
     label {
       display: inline-flex;
@@ -74,10 +85,11 @@
       padding: 15px;
       flex-grow: 0;
     }
-    .style-block h2 {
+    .style-block h3 {
       color: #ff9;
       margin-bottom: 8px;
       font-size: 1.05em;
+      user-select:none;
     }
     .output {
       font-size: 1.1em;
@@ -105,13 +117,19 @@
       user-select: none;
       transition: background 0.3s;
       flex-shrink: 0;
+      max-width: 150px;
     }
-    button:hover {
+    button:hover:not(:disabled) {
       background: #777;
+    }
+    button:disabled {
+      cursor: default;
+      opacity: 0.7;
     }
     button .icon {
       font-size: 1.2em;
       line-height: 1;
+      user-select:none;
     }
     /* Responsive */
     @media (max-width: 1600px) {
@@ -124,6 +142,24 @@
         margin-bottom: 30px;
       }
     }
+    #renderPreview {
+      font-size: 18px;
+      text-align: center;
+      user-select:none;
+      color: #eee;
+      min-height: 40px;
+      background: #222;
+      padding: 15px;
+      border-radius: 6px;
+    }
+    #simpleImgPreview img {
+      height: 93px;
+      margin-right: 15px;
+      border-radius: 8px;
+      object-fit: cover;
+      vertical-align: middle;
+      background: #111;
+    }
   </style>
 </head>
 <body>
@@ -131,51 +167,47 @@
   <h1>Générateur aesthetic & BBCode avancé</h1>
 
   <div class="container">
-    <!-- Colonne 1 : aesthetic -->
+
+    <!-- Colonne 1 : Texte aesthetic -->
     <div class="column" id="left-column">
-      <h2>Texte aesthetic</h2>
-      <textarea id="inputAesthetic">texte ici</textarea>
+      <h2>Texte aesthetic</h2><center>(rentre ton texte, copie & colle-le où tu veux !)</center>
+<br>
+      <textarea id="inputAesthetic" spellcheck="false" style="font-family:Arial;">tape ton texte à rendre beau ici</textarea>
       <div id="resultsAesthetic"></div>
     </div>
 
-    <!-- Colonne 2 : BBCode simple -->
+    <!-- Colonne 2 : Éditeur BBCode simple -->
     <div class="column" id="middle-column">
-      <h2>BBCode simple</h2>
-      <textarea id="inputBBCode" placeholder="Tape ton texte ici...">texte ici</textarea>
-      <div class="options">
-        <label><input type="checkbox" id="bold"> Gras</label>
-        <label><input type="checkbox" id="italic"> Italique</label>
-        <label><input type="checkbox" id="underline"> Souligné</label>
-      </div>
-      <div class="options" style="align-items:center;">
-        <label><input type="checkbox" id="enableColor"> Activer couleur</label>
-        <input type="color" id="color" value="#ffcc00" disabled />
-      </div>
-      <div class="options" style="max-width: 180px;">
-        <label for="sizeSelect">Taille du texte :</label>
-        <select id="sizeSelect">
-          <option value="">(par défaut)</option>
-          <option value="10">10</option>
-          <option value="12">12</option>
-          <option value="13">13</option>
-          <option value="14">14</option>
-          <option value="16">16</option>
-        </select>
-      </div>
-      <div class="style-block">
-        <div class="output" id="outputBBCode"></div>
-        <button id="btnBBCode">
-          <span class="icon">📋</span> Copier
-        </button>
-      </div>
-    </div>
+      <h2>Editeur BBCode simple</h2><center>(pour styliser ton profil simplement)</center>
+<br>    <br>
+   
+ <textarea id="inputBBCode" spellcheck="false" style="font-family:Arial;">rentre ton texte là et embelli-le avec les options en dessous !</textarea>
 
-    <!-- Colonne 3 : Troisième générateur (symbole + couleur) -->
+ <div class="options"><select id="sizeSelect" style=""><option value="">taille du texte</option><option value="10">10</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="16">16</option></select>
+
+<label><input type="checkbox" id="enableColor"> Activer couleur</label>
+<input type="color" id="color" value="#ffcc00" disabled /> <div class="options"><label><input type="checkbox" id="bold"> Gras</label> <label><input type="checkbox" id="italic"> Italique</label> <label><input type="checkbox" id="underline"> Souligné</label> </div>
+
+<div class="options" style="align-items:center;">
+
+<button id="btnBBCode"><span class="icon">📋</span> Copier le code</button><br>
+
+<div class="style-block"><h3>Texte avec le code appliqué :</h3>
+        <pre id="outputBBCode" contenteditable="true" spellcheck="false" style="font-size:12px;"></pre>
+
+      </div>      </div></div></div>
+
+    <!-- Colonne 3 : Symboles -->
     <div class="column" id="right-column">
-      <h2>Les symboles</h2>
+      <h2>Symboles</h2>
+
+      <div class="style-block">
+        <h3>Aperçu BBCode :</h3>
+        <pre id="bbcodePreview" contenteditable="true" spellcheck="false"></pre>
+      </div>
 
       <label for="symbolSelect">Insérer un symbole :</label>
-      <select id="symbolSelect" aria-label="Choisir un symbole">
+      <select id="symbolSelect" aria-label="Choisir un symbole" style="margin-bottom:15px;">
         <option value="">-- Choisir un symbole --</option>
         <option>〇</option><option>○</option><option>◎</option><option>◯</option><option>◉</option><option>◌</option><option>◍</option><option>⊙</option><option>⦿</option><option>␥</option><option>⎙</option><option>⊚</option><option>⊛</option>
         <option>◖</option><option>△</option><option>▿</option><option>▲</option><option>▼</option>
@@ -191,89 +223,56 @@
         <option>⊗</option><option>⊕</option><option>⊖</option><option>⊘</option><option>⊙</option><option>⊚</option><option>⊛</option><option>⊜</option><option>⊝</option><option>⊞</option><option>⊟</option><option>⊠</option><option>⊡</option><option>⊢</option><option>⊣</option><option>⊤</option><option>⊥</option><option>⊦</option><option>⊧</option>
       </select>
 
-      <div class="options" style="margin-top: 15px;">
-        <label for="colorSymbol">Couleur du symbole central :</label>
+      <div class="options" style="margin-bottom:20px;">
+        <label for="colorSymbol">Couleur du symbole :</label>
         <input type="color" id="colorSymbol" value="#A6874F" />
       </div>
 
-      <div class="style-block" style="margin-top: 20px;">
-        <label>Code BBCode généré :</label>
-        <pre id="bbcodePreview" style="background:#111; padding: 15px; border-radius: 6px; min-height: 60px; user-select: all; overflow-x:auto;">[center][size=18]✧ [color=#A6874F] ✧[/color] ✧[/size][/center]</pre>
-      </div>
+      <button id="btnThird">
+        <span class="icon">📋</span> Copier le code BBCode
+      </button>
 
-      <div class="style-block" style="margin-top: 10px;">
-        <label>Aperçu rendu simple :</label>
-        <div id="renderPreview" style="background:#222; padding: 15px; border-radius: 6px; min-height: 40px; font-size: 18px; text-align:center; user-select:none; color:#eee;">
+      <div class="style-block" style="margin-top:20px;">
+        <h3>Aperçu rendu simple :</h3>
+        <div id="renderPreview">
           ✧ <span id="colorSpan" style="color:#A6874F;">✧</span> ✧
         </div>
       </div>
-
-      <button id="btnThird" style="margin-top: 15px;">
-        <span class="icon">📋</span> Copier le code BBCode
-      </button>
     </div>
 
-    <!-- Colonne 4 : Générateur simple 2 images centrées -->
+    <!-- Colonne 4 : 2 images ou gifs carrés -->
     <div class="column" id="fourth-column">
-      <h2>2 images centrées (carrés ou gifs)</h2>
-
+      <h2>2 images ou gifs carrés</h2>
       <label for="imgUrl1">URL de la première image :</label>
       <input type="text" id="imgUrl1" placeholder="https://..." value="https://i.pinimg.com/originals/f8/18/79/f81879366216a19d451e90b955974b9d.gif" />
 
       <label for="imgUrl2">URL de la deuxième image :</label>
       <input type="text" id="imgUrl2" placeholder="https://..." value="https://i.pinimg.com/originals/87/8c/83/878c83cece3f232e56cbc803b58507a5.gif" />
 
-      <div class="style-block" style="margin-top: 15px;">
-        <label>Code BBCode généré :</label>
-        <pre id="simpleImgBBCode" style="background:#111; padding: 15px; border-radius: 6px; min-height: 80px; user-select: all; overflow-x:auto;"></pre>
-      </div>
-
-      <div class="style-block" style="margin-top: 10px;">
-        <label>Aperçu rendu simple :</label>
-        <div id="simpleImgPreview" style="background:#222; padding: 15px; border-radius: 6px; min-height: 100px; text-align:center;">
-          <img id="previewImg1" src="" alt="Image 1" style="height: 93px; margin-right: 15px;" />
-          <img id="previewImg2" src="" alt="Image 2" style="height: 93px;" />
-        </div>
-      </div>
-
       <button id="btnSimpleImgCopy" style="margin-top: 15px;">
         <span class="icon">📋</span> Copier le code BBCode
       </button>
+
+      <div class="style-block" style="margin-top: 10px;">
+        <h3>Aperçu rendu simple :</h3>
+        <div id="simpleImgPreview">
+          <img id="previewImg1" src="" alt="Image 1" />
+          <img id="previewImg2" src="" alt="Image 2" />
+        </div>
+      </div>
     </div>
+
   </div>
 
 <script>
-  // -------- Colonne 1 : aesthetic --------
+  // --------------- Colonne 1 : Texte aesthetic ---------------
   const inputAesthetic = document.getElementById('inputAesthetic');
   const resultsAesthetic = document.getElementById('resultsAesthetic');
-
-  const styles = [
-    {
-      name: "Option 3 : Texte fullwidth encadré 【﻿ 】",
-      transform: (text) => `【\uFEFF ${toFullwidth(text)} 】`
-    },
-    {
-      name: "Option 4 : 【lettres】 encadrées",
-      transform: toBoxed
-    },
-    {
-      name: "Option 5 : Souligné (a̲e̲s̲...)",
-      transform: toUnderline
-    },
-    {
-      name: "Option 6 : Double souligné (a͟e͟s͟...)",
-      transform: toDoubleUnderline
-    },
-    {
-      name: "Option 7 : Petites majuscules espacées",
-      transform: toSmalls
-    }
-  ];
 
   function toFullwidth(str) {
     return str.split('').map(c => {
       const code = c.charCodeAt(0);
-      if (c === ' ') return '　';
+      if (c === ' ') return '　'; // fullwidth space U+3000
       if (code >= 33 && code <= 126) {
         return String.fromCharCode(code + 65248);
       }
@@ -281,16 +280,17 @@
     }).join('');
   }
 
+  // Option 1 : fullwidth avec espaces fullwidth entre les mots
+  function option1FullwidthWithFullwidthSpaces(text) {
+    return text.split(' ').map(word => toFullwidth(word)).join('　'); // fullwidth space between words
+  }
+  // Option 2 : fullwidth avec espaces normaux entre les mots
+  function option2FullwidthWithNormalSpaces(text) {
+    return toFullwidth(text).replace(/　/g,' '); // convert all to fullwidth then replace fullwidth spaces by normal spaces
+  }
+
   function toBoxed(str) {
     return str.split('').map(c => (c === ' ') ? ' ' : `【${c}】`).join('');
-  }
-
-  function toUnderline(str) {
-    return str.split('').map(c => c + '\u0332').join('');
-  }
-
-  function toDoubleUnderline(str) {
-    return str.split('').map(c => c + '\u035F').join('');
   }
 
   function toSmalls(str) {
@@ -306,6 +306,25 @@
     return str.split('').map(c => map[c] || c).join('');
   }
 
+  const styles = [
+    {
+      name: "Option 1 : fullwidth avec espace fullwidth entre les mots",
+      transform: option1FullwidthWithFullwidthSpaces
+    },
+    {
+      name: "Option 2 : fullwidth avec espace normal entre les mots",
+      transform: option2FullwidthWithNormalSpaces
+    },
+    {
+      name: "Option 3 : Texte fullwidth encadré 【﻿ 】",
+      transform: (text) => `【\uFEFF ${option1FullwidthWithFullwidthSpaces(text)} 】`
+    },
+    {
+      name: "Option 7 : Petites majuscules espacées",
+      transform: toSmalls
+    }
+  ];
+
   function renderAesthetic() {
     const text = inputAesthetic.value.trim();
     resultsAesthetic.innerHTML = '';
@@ -319,7 +338,7 @@
       label.textContent = name;
       label.style.marginBottom = '8px';
 
-      const output = document.createElement('div');
+      const output = document.createElement('pre');
       output.className = 'output';
       output.textContent = transform(text);
 
@@ -328,7 +347,7 @@
       btn.addEventListener('click', () => {
         navigator.clipboard.writeText(output.textContent).then(() => {
           const icon = btn.querySelector('.icon');
-          icon.textContent = '✅';
+          icon.textContent = '✔️';
           btn.disabled = true;
           setTimeout(() => {
             icon.textContent = '📋';
@@ -343,48 +362,54 @@
       resultsAesthetic.appendChild(div);
     });
   }
+
   inputAesthetic.addEventListener('input', renderAesthetic);
   renderAesthetic();
 
-  // -------- Colonne 2 : BBCode simple --------
+
+  // --------------- Colonne 2 : BBCode simple ---------------
   const inputBBCode = document.getElementById('inputBBCode');
   const outputBBCode = document.getElementById('outputBBCode');
-  const btnBBCode = document.getElementById('btnBBCode');
-  const bold = document.getElementById('bold');
-  const italic = document.getElementById('italic');
-  const underline = document.getElementById('underline');
-  const enableColor = document.getElementById('enableColor');
+  const boldCheck = document.getElementById('bold');
+  const italicCheck = document.getElementById('italic');
+  const underlineCheck = document.getElementById('underline');
+  const enableColorCheck = document.getElementById('enableColor');
   const colorInput = document.getElementById('color');
   const sizeSelect = document.getElementById('sizeSelect');
+  const btnBBCode = document.getElementById('btnBBCode');
 
   function updateBBCode() {
-    let text = inputBBCode.value.trim();
+    let text = inputBBCode.value || '';
     if (!text) {
       outputBBCode.textContent = '';
       return;
     }
-    if (bold.checked) text = `[b]${text}[/b]`;
-    if (italic.checked) text = `[i]${text}[/i]`;
-    if (underline.checked) text = `[u]${text}[/u]`;
-    if (enableColor.checked) text = `[color=${colorInput.value}]${text}[/color]`;
+    // Sanitize newlines
+    text = text.replace(/\r\n/g, '\n');
+
+    if (boldCheck.checked) text = `[b]${text}[/b]`;
+    if (italicCheck.checked) text = `[i]${text}[/i]`;
+    if (underlineCheck.checked) text = `[u]${text}[/u]`;
+    if (enableColorCheck.checked) text = `[color=${colorInput.value}]${text}[/color]`;
     if (sizeSelect.value) text = `[size=${sizeSelect.value}]${text}[/size]`;
 
     outputBBCode.textContent = text;
   }
-
-  [inputBBCode, bold, italic, underline, enableColor, colorInput, sizeSelect].forEach(el => {
-    el.addEventListener('input', updateBBCode);
-  });
-
-  enableColor.addEventListener('change', () => {
-    colorInput.disabled = !enableColor.checked;
+  inputBBCode.addEventListener('input', updateBBCode);
+  boldCheck.addEventListener('change', updateBBCode);
+  italicCheck.addEventListener('change', updateBBCode);
+  underlineCheck.addEventListener('change', updateBBCode);
+  enableColorCheck.addEventListener('change', () => {
+    colorInput.disabled = !enableColorCheck.checked;
     updateBBCode();
   });
+  colorInput.addEventListener('input', updateBBCode);
+  sizeSelect.addEventListener('change', updateBBCode);
 
   btnBBCode.addEventListener('click', () => {
     navigator.clipboard.writeText(outputBBCode.textContent).then(() => {
       const icon = btnBBCode.querySelector('.icon');
-      icon.textContent = '✅';
+      icon.textContent = '✔️';
       btnBBCode.disabled = true;
       setTimeout(() => {
         icon.textContent = '📋';
@@ -392,35 +417,37 @@
       }, 2000);
     });
   });
-
   updateBBCode();
 
-  // -------- Colonne 3 : symbole + couleur --------
+  // --------------- Colonne 3 : Symboles ---------------
   const symbolSelect = document.getElementById('symbolSelect');
   const colorSymbol = document.getElementById('colorSymbol');
   const bbcodePreview = document.getElementById('bbcodePreview');
   const renderPreview = document.getElementById('renderPreview');
-  const colorSpan = document.getElementById('colorSpan');
   const btnThird = document.getElementById('btnThird');
+  const colorSpan = document.getElementById('colorSpan');
 
-  function updateThirdGenerator() {
-    const symb = symbolSelect.value || '✧';
+  function updateSymbol() {
+    const sym = symbolSelect.value || '✧';
     const color = colorSymbol.value || '#A6874F';
 
-    const code = `[center][size=18]${symb} [color=${color}] ${symb}[/color] ${symb}[/size][/center]`;
-    bbcodePreview.textContent = code;
+    // BBCode sans size car taille fixée
+    const bbcode = `[center][size=18]${sym} [color=${color}]${sym}[/color] ${sym}[/size][/center]`;
+    bbcodePreview.textContent = bbcode;
 
-    colorSpan.textContent = symb;
+    // Affichage rendu
+    colorSpan.textContent = sym;
     colorSpan.style.color = color;
-    renderPreview.childNodes[0].textContent = symb + ' ';
+    // Le texte complet
+    renderPreview.innerHTML = `${sym} <span style="color:${color}">${sym}</span> ${sym}`;
   }
-  symbolSelect.addEventListener('change', updateThirdGenerator);
-  colorSymbol.addEventListener('input', updateThirdGenerator);
+  symbolSelect.addEventListener('change', updateSymbol);
+  colorSymbol.addEventListener('input', updateSymbol);
 
   btnThird.addEventListener('click', () => {
     navigator.clipboard.writeText(bbcodePreview.textContent).then(() => {
       const icon = btnThird.querySelector('.icon');
-      icon.textContent = '✅';
+      icon.textContent = '✔️';
       btnThird.disabled = true;
       setTimeout(() => {
         icon.textContent = '📋';
@@ -428,35 +455,54 @@
       }, 2000);
     });
   });
+  updateSymbol();
 
-  updateThirdGenerator();
+  // Rendre le bbcodePreview éditable manuellement et mettre à jour rendu quand modifié
+  bbcodePreview.addEventListener('input', () => {
+    // Essayer d'extraire le symbole et la couleur pour l'affichage rendu simple
+    const val = bbcodePreview.textContent;
+    const matchSym = val.match(/\[size=18\](.)\s+\[color=#[0-9a-fA-F]{6}\]\1\[\/color\]\s+\1\[\/size\]/);
+    if (matchSym && matchSym[1]) {
+      const sym = matchSym[1];
+      // Extract color hex
+      const matchColor = val.match(/\[color=(#[0-9a-fA-F]{6})\]/);
+      const color = matchColor ? matchColor[1] : '#A6874F';
+      colorSpan.textContent = sym;
+      colorSpan.style.color = color;
+      renderPreview.innerHTML = `${sym} <span style="color:${color}">${sym}</span> ${sym}`;
+    } else {
+      // Fallback render text raw
+      renderPreview.textContent = val;
+      colorSpan.textContent = '';
+    }
+  });
 
-  // -------- Colonne 4 : 2 images centrées --------
+
+  // --------------- Colonne 4 : 2 images ou gifs carrés ---------------
   const imgUrl1 = document.getElementById('imgUrl1');
   const imgUrl2 = document.getElementById('imgUrl2');
   const simpleImgBBCode = document.getElementById('simpleImgBBCode');
+  const btnSimpleImgCopy = document.getElementById('btnSimpleImgCopy');
   const previewImg1 = document.getElementById('previewImg1');
   const previewImg2 = document.getElementById('previewImg2');
-  const btnSimpleImgCopy = document.getElementById('btnSimpleImgCopy');
 
-  function updateSimpleImgGenerator() {
+  function updateSimpleImg() {
     const url1 = imgUrl1.value.trim();
     const url2 = imgUrl2.value.trim();
 
-    const bbcode = `[center][img(93px,auto)]${url1}[/img] [img(93px,auto)]${url2}[/img][/center]`;
-    simpleImgBBCode.textContent = bbcode;
-
     previewImg1.src = url1 || '';
     previewImg2.src = url2 || '';
-  }
 
-  imgUrl1.addEventListener('input', updateSimpleImgGenerator);
-  imgUrl2.addEventListener('input', updateSimpleImgGenerator);
+    const bbcode = `[center][img(93px,auto)]${url1}[/img] [img(93px,auto)]${url2}[/img][/center]`;
+    simpleImgBBCode.textContent = bbcode;
+  }
+  imgUrl1.addEventListener('input', updateSimpleImg);
+  imgUrl2.addEventListener('input', updateSimpleImg);
 
   btnSimpleImgCopy.addEventListener('click', () => {
     navigator.clipboard.writeText(simpleImgBBCode.textContent).then(() => {
       const icon = btnSimpleImgCopy.querySelector('.icon');
-      icon.textContent = '✅';
+      icon.textContent = '✔️';
       btnSimpleImgCopy.disabled = true;
       setTimeout(() => {
         icon.textContent = '📋';
@@ -464,8 +510,8 @@
       }, 2000);
     });
   });
+  updateSimpleImg();
 
-  updateSimpleImgGenerator();
 </script>
 
 </body>
