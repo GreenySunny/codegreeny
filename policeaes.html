@@ -22,30 +22,34 @@
       padding: 15px;
       box-sizing: border-box;
       border-radius: 6px;
+      resize: vertical;
+      min-height: 80px;
     }
     .style-block {
       background: #222;
       border-radius: 10px;
-      padding: 20px;
+      padding: 15px 20px;
       margin-bottom: 20px;
     }
     .style-block h2 {
-      font-size: 1.1em;
+      font-size: 1.05em;
       color: #ff9;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     .output {
-      font-size: 1.4em;
+      font-size: 1.1em;
       word-break: break-word;
       margin-bottom: 10px;
+      user-select: all;
     }
     button {
       background: #444;
       color: #fff;
       border: none;
-      padding: 8px 14px;
+      padding: 7px 12px;
       border-radius: 5px;
       cursor: pointer;
+      font-size: 0.9em;
     }
     button:hover {
       background: #666;
@@ -54,7 +58,7 @@
 </head>
 <body>
   <h1>🎀 Générateur de texte aesthetic 🎀</h1>
-  <textarea id="input" placeholder="Tape ton texte ici..."></textarea>
+  <textarea id="input">texte ici</textarea>
 
   <div id="results"></div>
 
@@ -64,12 +68,12 @@
 
     const styles = [
       {
-        name: "Option 1 : Fullwidth + espace fullwidth",
-        transform: (text) => toFullwidthSpaced(text, '　')
+        name: "Option 1 : Fullwidth + espace fullwidth entre mots",
+        transform: (text) => toFullwidthSpacedBetweenWords(text, '　')
       },
       {
-        name: "Option 2 : Fullwidth + espace normal",
-        transform: (text) => toFullwidthSpaced(text, ' ')
+        name: "Option 2 : Fullwidth + espace normal entre mots",
+        transform: (text) => toFullwidthSpacedBetweenWords(text, ' ')
       },
       {
         name: "Option 3 : 【lettres】 encadrées",
@@ -100,12 +104,10 @@
       }).join('');
     }
 
-    function toFullwidthSpaced(str, space = ' ') {
-      return str.split('').map(c => {
-        const code = c.charCodeAt(0);
-        let full = (c === ' ') ? '　' : (code >= 33 && code <= 126) ? String.fromCharCode(code + 65248) : c;
-        return full + space;
-      }).join('').trim();
+    // Fullwidth + espace (fullwidth ou normal) entre mots seulement
+    function toFullwidthSpacedBetweenWords(str, spaceChar = ' ') {
+      // Découpe par mots
+      return str.split(' ').map(word => toFullwidth(word)).join(spaceChar);
     }
 
     function toBoxed(str) {
@@ -160,7 +162,11 @@
     }
 
     input.addEventListener('input', render);
+
     window.copyToClipboard = copyToClipboard;
+
+    // Rend une première fois au chargement avec texte d'exemple
+    window.onload = render;
   </script>
 </body>
 </html>
