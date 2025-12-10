@@ -4,8 +4,8 @@
     src: url('Feathery.otf') format('opentype');
 }
 @font-face {
-    font-family: 'Montague'; 
-    src: url('montague.otf') format('opentype');
+    font-family: 'Oceanss'; 
+    src: url('oceanside-typewriter.ttf') format('truetype');
     font-weight: normal;  
     font-style: normal;  /* <--- On spécifie que c'est la version normale */
 }
