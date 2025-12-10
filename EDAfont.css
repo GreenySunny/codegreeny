@@ -11,9 +11,9 @@
 }
 @font-face {
     font-family: 'Montague'; 
-    src: url('montague-italic.otf') format('opentype'); /* <--- Le chemin vers le fichier italique */
+    src: url('montague.otf') format('opentype'); /* <--- Le chemin vers le fichier italique */
     font-weight: normal;  
-    font-style: italic;  /* <--- On spécifie que c'est la version italique */
+    font-style: normal;  /* <--- On spécifie que c'est la version italique */
 }
 
 @font-face {
