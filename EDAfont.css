@@ -1,0 +1,10 @@
+@font-face {
+    font-family: 'Feathery';
+    /* Le chemin est relatif au fichier CSS */
+    src: url('Feathery.otf') format('opentype'); 
+}
+
+/* Application */
+body {
+    font-family: 'Feathery', sans-serif;
+}
