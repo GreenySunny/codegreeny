@@ -29,6 +29,15 @@
     font-weight: normal;
     font-style: normal;
 }
+@font-face {
+    font-family: 'Cronde'; /* <--- Choisissez un nom CSS simple */
+    src: url('CRONDE.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
 /* Application */
 body {
     font-family: 'Feathery';
