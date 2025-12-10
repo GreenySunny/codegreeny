@@ -9,15 +9,25 @@
     font-weight: normal;  
     font-style: normal;  /* <--- On spécifie que c'est la version normale */
 }
-
-/* ---------------------------------- */
-/* 2. DÉCLARATION DE LA VARIANTE ITALIQUE */
-/* ---------------------------------- */
 @font-face {
     font-family: 'Montague'; 
     src: url('montague-italic.otf') format('opentype'); /* <--- Le chemin vers le fichier italique */
     font-weight: normal;  
     font-style: italic;  /* <--- On spécifie que c'est la version italique */
+}
+
+@font-face {
+    font-family: 'KittenCafe'; /* <--- Choisissez un nom CSS simple */
+    src: url('Kitten-café.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Camiro'; /* <--- Choisissez un nom CSS simple */
+    src: url('Camiro.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 /* Application */
 body {
