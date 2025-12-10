@@ -1,10 +1,26 @@
 @font-face {
     font-family: 'Feathery';
     /* Le chemin est relatif au fichier CSS */
-    src: url('Feathery.otf') format('opentype'); 
+    src: url('Feathery.otf') format('opentype');
+}
+@font-face {
+    font-family: 'Montague'; 
+    src: url('montague.otf') format('opentype');
+    font-weight: normal;  
+    font-style: normal;  /* <--- On spécifie que c'est la version normale */
 }
 
+/* ---------------------------------- */
+/* 2. DÉCLARATION DE LA VARIANTE ITALIQUE */
+/* ---------------------------------- */
+@font-face {
+    font-family: 'Montague'; 
+    src: url('montague-italic.otf') format('opentype'); /* <--- Le chemin vers le fichier italique */
+    font-weight: normal;  
+    font-style: italic;  /* <--- On spécifie que c'est la version italique */
+}
 /* Application */
 body {
     font-family: 'Feathery', sans-serif;
+    
 }
