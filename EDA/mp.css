@@ -1,0 +1,144 @@
+/* mp lecture */
+
+.title_total_mp {
+    width: 100%;
+    background-position: top center;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    padding: 10px;
+    color: #a6bce8;
+    text-shadow: 1px 1px 2px black;
+    text-align: center;
+    text-transform: lowercase;
+    font: 16px 'Bodoni Moda';
+  Font-style:italic;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.postprofile-avatar {
+    margin-bottom: 6px;
+    text-align: center;
+    width: 150px;
+    height: 240px;
+    overflow: hidden;
+}
+.postprofile-avatar img {
+    border: none !important;
+    border-radius: 0px !important;
+    box-shadow: none !important;
+    height: 240px !important;
+    width: 150px;
+}
+.titre_du_mp{
+    padding-bottom: 10px;
+    margin-bottom: 16px;
+     font-size: 12px !important;
+    text-transform:lowercase !important;
+}
+.titre_du_mp span {
+  color:#cdb65c;
+}
+.signature_div{
+margin-top:16px;
+}
+.postbody .content {
+    font-size: 13px !important;
+    text-align: justify;
+  margin-left:16px;
+}
+/* mp boite */
+
+
+/* MPS LISTE */
+
+#privmsgs-menu > li
+ {
+    margin: 0;
+    min-height: 88px;
+    min-width: 88px;
+    padding: 0px 9px 0;
+    text-align: left;
+    vertical-align: middle;
+   font-size: 11px !important;
+     font-family: 'Geist Mono' !important;
+    text-transform:lowercase !important;
+  color:white !important;
+}
+
+ul.topiclist.bg_none {
+    background: transparent;
+}
+#privmsgs-menu {
+    float: none !important;
+    padding: 0 9px;
+      text-transform:lowercase !important;
+}
+#picture_legend, #privmsgs-menu {
+    border-radius: 3px;
+    box-shadow: none !important;
+    font-size: 11px;
+    margin-bottom: 24px;
+    overflow: hidden;
+}
+#privmsgs-menu a {
+      text-transform:lowercase !important;
+    font: 11px 'Geist Mono';
+    letter-spacing: 0px;
+}
+
+#privmsgs-menu .active  {
+      text-transform:lowercase !important;
+    font: 11px 'Geist Mono' !important;
+    letter-spacing: 0px !important;
+}
+
+.mp_bouton{
+    background: transparent;
+    width: 49%;
+    margin: 0px 5px 0px 0px;
+    padding: 4px;
+    font: 11px calibri;
+    text-transform: lowercase;
+    text-align: left;
+}
+.mp_bouton a {
+    color: #1e1e1e;
+    display: block;
+  font-size:13px !important;
+  font-family: 'Geist Mono' !important;
+}
+.total_liste_mp {
+    background: transparent;
+    padding: 10px;
+    height: 69px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  border-bottom: 1px solid grey;
+}
+.title_mp {
+    width: 770px;
+    height: 15px;
+    padding: 10px 0px 15px 0px;
+}
+.title_mp a {
+  font-size:14px !important; 
+  font-family:'Bodoni Moda';
+  text-transform:lowercase;
+  font-weight:600;
+  line-height:16px;
+  color:white !important;
+}
+.blok_mp {
+    width: 286px;
+    padding: 10px 30px 0px 30px;
+    font: 11px 'Manrope';
+    text-transform: lowercase;
+    height: 30px;
+  
+}
+.icon_mp {
+    width: 20px;
+    margin-top: 0px;
+}
+/* fin */
