@@ -1,0 +1,93 @@
+/* --- LE CONTENEUR (Libère le tooltip et aligne à gauche) --- */
+.awards_block.simple, 
+.awards_block_simple_wrapper, 
+.postprofile {
+    text-align: left !important;
+    display: block !important;
+    overflow: visible !important;
+}
+
+/* LE CONTENANT */
+.awards_block simple {
+  max-height:102px !important;
+  overflow:auto !important;
+}
+
+.award {
+    display: inline-block !important;
+    width: 35px !important;
+    height: 35px !important;
+    background-color: #776B50 !important;
+    border: 0px solid rgba(188, 188, 188, 0.5) !important;
+    border-radius: 50% !important;
+    margin:0 6px 6px 6px !important;
+    padding: 6px !important;
+}
+
+/* L'IMAGE FORCÉE */
+.award img {
+    /* On force l'image à se comporter comme un petit objet au centre */
+    display: inline-block !important;
+    vertical-align: middle !important;
+    border-radius: 50% !important;
+    /* On utilise une taille relative au parent */
+    width: 90% !important; 
+    height: 90% !important;
+    
+    /* LA MARGE : On utilise un padding interne sur l'image elle-même */
+    /* Augmentez le 8px pour avoir une plus petite image (plus de marge) */
+    margin: 8px !important; 
+    
+    /* Sécurité contre les tailles forcées par le système */
+    max-width: 100% !important;
+    max-height: 100% !important;
+}
+
+/* --- LE TOOLTIP (Centrage corrigé) --- */
+.award_tooltiptext {
+    position: absolute !important;
+    
+    /* On le place au centre horizontal de l'icône */
+    left: 50% !important;
+    /* On utilise transform pour le décaler de sa propre moitié vers la gauche */
+    transform: translateX(-50%) !important;
+    
+    /* Position verticale (ajustez le -35px si besoin selon la hauteur de la bulle) */
+    top: -45px !important; 
+    
+    background: #151617 !important;
+    color: white !important;
+    border: 1px solid var(--border-c1) !important;
+    border-radius: 0 !important;
+    font-size: 9px !important;
+    text-transform: lowercase;
+    padding: 2px 8px; /* Un peu plus de padding pour le confort */
+    white-space: nowrap !important;
+    z-index: 9999 !important;
+    
+    visibility: hidden;
+    opacity: 0;
+    display: block !important;
+    transition: opacity 0.4s !important;
+  width:auto !important;
+}
+
+/* Affichage au survol */
+.award:hover .award_tooltiptext {
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* --- SUPPRESSION DU CARRÉ BLANC (Flèche native) --- */
+.award_tooltiptext::after, .award_tooltiptext::before {
+    display: none !important;
+    content: none !important;
+}
+
+/* --- TEXTE À L'INTÉRIEUR (Vos styles Bodoni) --- */
+.award_tooltiptext_title { 
+    color: #776B50 !important;
+    font-style: italic !important;
+    font-size: 14px !important;
+    font-family: 'Bodoni Moda' !important;
+}
