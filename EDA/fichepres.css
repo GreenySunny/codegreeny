@@ -1,0 +1,103 @@
+.pres_iconirl {
+  width:70px !important;
+  height:70px !important;
+  object-fit:cover;
+  margin-left:20px;
+}
+
+.fiche_admin {
+  margin-left:16px;
+}
+
+.partie1 {
+ width:250px; 
+ height:240px;
+ overflow:auto;
+}
+.cpresaimg3 {
+  margin-left:22px;
+}
+
+.presaimg3 {
+  width:180px;
+  height:80px;
+  object-fit:cover;
+  padding:6px;
+}
+
+.fiche_cita {
+  font-family: 'Geist mono';
+  margin-top:-10px;
+  margin-bottom:-10px;
+  font-size:11px;
+  font-weight:300;
+  color:lightgrey;
+  letter-spacing:px;
+  text-transform:lowercase;
+  width:280px;
+  text-align:center;
+}
+
+.presaimg2 {
+  width:130px;
+  height:208px;
+  object-fit:cover;
+  padding:0px;
+  
+}
+
+.psypsy {
+  margin-top:-20px;
+}
+
+.profilpsy {
+    margin: auto;
+    overflow: auto;
+    width: 440px;
+    line-height: 12px;
+}
+
+.psy1 {
+    text-align: center;
+    font-size: 10px;
+    font-weight: 400;
+    text-transform: lowercase;
+    font-family:'Manrope';
+    color:lightgrey;
+      letter-spacing: 0.5px;
+  
+}
+
+.cotepsy1 {
+    text-align: left;
+    width: 145px;
+}
+
+.jaugepsy {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+      margin-left:5px;
+   
+}
+
+.meter {
+    border-radius: 0px;
+    height: 5px;
+    padding: 0;
+    position: relative;
+    width: 150px;
+    margin-top: 2px;
+    background-color: #1A1B1B;
+    margin-bottom:-13px;
+    margin-left:3px;
+}
+
+.meter > span {
+    display: block;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 0px;
+    background: var(--deg-2);
+  opacity:0.7;
+}
