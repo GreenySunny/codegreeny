@@ -1,0 +1,12 @@
+.takt img {
+    display: inline-block; /* Permet d'appliquer des marges proprement */
+    margin-bottom: 4px;   /* Ajustez la valeur (10px) selon l'écart voulu */
+    margin-right: 5px;  
+  margin-top: 3px; /* Optionnel : espace horizontal si elles sont côte à côte */
+  opacity:0.8;
+  height:13px;
+  width:auto;
+}
+
+
+.takt img:hover{ opacity:1; }
