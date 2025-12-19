@@ -1,30 +1,3 @@
-/* --- Préparation du GIF (caché par défaut) --- */
-#mon-lien-header a::after {
-    content: "";
-    left: 122%;
-  top:-175%;
-    position: absolute;
-    /* Ajuste la position du GIF par rapport au texte */
-
-    transform: translateX(-50%);
-  z-index: 9;
-    
-    width: 880px; 
-    height: 300px;
-    background: url('https://i.postimg.cc/MHfmzGzb/kk.gif') no-repeat center;
-    background-size: contain;
-    
-    /* Effet d'apparition */
-    opacity: 0.4;
-    transition: opacity 0.4s ease-in-out;
-    pointer-events: none; /* Empêche le GIF de gêner le clic */
-}
-
-/* --- Affichage du GIF au survol --- */
-#mon-lien-header a:hover::after {
-
-}
-
 /* --- Conteneur Principal --- */
 #new-headerbar-top {
     position: relative;
