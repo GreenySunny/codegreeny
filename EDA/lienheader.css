@@ -1,0 +1,100 @@
+/* --- Préparation du GIF (caché par défaut) --- */
+#mon-lien-header a::after {
+    content: "";
+    left: 122%;
+  top:-175%;
+    position: absolute;
+    /* Ajuste la position du GIF par rapport au texte */
+
+    transform: translateX(-50%);
+  z-index: 9;
+    
+    width: 880px; 
+    height: 360px;
+    background: url('https://i.postimg.cc/MHfmzGzb/kk.gif') no-repeat center;
+    background-size: contain;
+    
+    /* Effet d'apparition */
+    opacity: 0.4;
+    transition: opacity 0.4s ease-in-out;
+    pointer-events: none; /* Empêche le GIF de gêner le clic */
+}
+
+/* --- Affichage du GIF au survol --- */
+#mon-lien-header a:hover::after {
+
+}
+
+/* --- Style des lettres qui dansent --- */
+#mon-lien-header a .dance {
+    display: inline-block;
+    -webkit-text-fill-color: inherit; /* Important pour garder la couleur */
+}
+
+/* --- L'Effet Vague (Délais) --- */
+#mon-lien-header a:hover .dance:nth-of-type(1) { animation: wave 0.4s 0.1s; }
+#mon-lien-header a:hover .dance:nth-of-type(2) { animation: wave 0.4s 0.2s; }
+#mon-lien-header a:hover .dance:nth-of-type(3) { animation: wave 0.4s 0.3s; }
+#mon-lien-header a:hover .dance:nth-of-type(4) { animation: wave 0.4s 0.4s; }
+#mon-lien-header a:hover .dance:nth-of-type(5) { animation: wave 0.4s 0.5s; }
+#mon-lien-header a:hover .dance:nth-of-type(6) { animation: wave 0.4s 0.6s; }
+
+/* --- Animation --- */
+@keyframes wave {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); } /* Hauteur du saut */
+}
+#mon-lien-header a:hover {
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  opacity:0.9;
+}
+
+/* --- Conteneur Principal --- */
+#new-headerbar-top {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 380px;
+}
+
+/* --- Logo --- */
+#logo {
+    position: absolute;
+    z-index: 1;
+}
+
+/* --- Bloc Lien (Positionnement) --- */
+#mon-lien-header {
+    position: relative;
+    z-index: 10;
+    right: 235px;
+    top: 99px;
+}
+
+/* --- États du Lien (Typo & Style) --- */
+#mon-lien-header a, 
+#mon-lien-header a:link, 
+#mon-lien-header a:visited {
+    display: inline-block;
+    padding: 0 20px 0 0;
+    color: #dddddd !important;
+    text-decoration: none;
+    font-family: 'Feathery';
+    font-size: 84px;
+    font-weight: 400;
+    font-style: italic;
+    border-radius: 0px;
+    overflow: visible;
+}
+
+/* --- Effets & Dégradé --- */
+#mon-lien-header a {
+    background: var(--deg-2);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: #dddddd;
+    transition: -webkit-text-fill-color 2s ease-in-out, color 2s ease-in-out, transform 0.2s;
+}
+
