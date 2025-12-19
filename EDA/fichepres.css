@@ -101,3 +101,32 @@
     background: var(--deg-2);
   opacity:0.7;
 }
+
+.titre_fiche {
+  padding-top:12px;
+  padding-bottom: 5px;
+  margin: auto;
+  color: #A5B8E4;
+  font-family: 'Bodoni Moda' !important;
+  font-size: 20px;
+  letter-spacing:normal;
+  font-weight: 500;
+  text-transform: lowercase;
+  line-height:30px;
+  width:100%;
+  font-style:italic;
+}
+
+.titre_fiche2 {
+  padding-top:12px;
+  padding-bottom: 5px;
+  margin: auto;
+  color:#F9D68E !important;
+  font-family:'AesReg' !important;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  font-size: 14px;
+  font-weight: 500;
+  line-height:30px;
+  width:100%;
+}
