@@ -1,0 +1,66 @@
+/* liste des membres */
+.liste_des_membres {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 50px;
+}
+.membre_liste {
+  border-radius:0px;
+  margin:2px;
+  width:200px;
+  height:320px;
+  background-image: none;
+}
+.inside_member {
+    text-align: center;
+    height: 365px;
+}
+.membre_liste img {
+    border-radius: 0px;
+    width: 100%;
+}
+.hover_inside_membre {
+    position: relative;
+    width: 202px;
+    height: 320px;
+    background: rgba(0, 0, 0, 0.8);
+    top: -322px;
+    transition: all 800ms;
+    opacity: 0;
+}
+.hovy_inside {
+    height: 321px;
+    background-size: 100%;
+    transition:all 800ms;
+}
+.hover_inside_membre:hover, .hovy_inside {
+  transition:all 800ms;
+  opacity:1;
+}
+.member_pro {
+    padding: 10px 20px 6px 20px;
+    text-align: left;
+    font: 11px 'Geist Mono';
+    letter-spacing: 0px;
+    color: white;
+    font-weight: bold;
+  text-transform:lowercase !important;
+
+}
+.nom_member {
+    width: 200px;
+    text-align: center;
+    padding: 5px 5px 2px 5px;
+    margin: -670px auto auto auto;
+    font-size: 14px ;
+    font-family:'Bodoni Moda';
+    line-height: 16px;
+    background:#1A1B1B;
+    letter-spacing: 0.5px !important;
+  text-transform:lowercase !important;
+  font-style:italic;
+
+}
+
+/* fin liste des membres */
