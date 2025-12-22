@@ -18,16 +18,16 @@
 .postprofile-avatar {
     margin-bottom: 6px;
     text-align: center;
-    width: 200px;
-    height: 320px;
+    width:150px;
+    height: 240px;
     overflow: hidden;
 }
 .postprofile-avatar img {
     border: none !important;
     border-radius: 0px !important;
     box-shadow: none !important;
-    width: 200px !important;
-    height: 320px !important;
+    width: 150px !important;
+    height: 240px !important;
 }
 .titre_du_mp{
     padding-bottom: 10px;
