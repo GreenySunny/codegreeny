@@ -1,0 +1,174 @@
+/*WYSH ME LUCK*/
+
+/*PREMIER POST*/
+i1 {
+  font-family: var(--police-3);
+  font-style: italic;
+  padding:0px 4px 0 4px;
+  opacity:0.8;
+}
+
+b1 {
+  font-family: var(--police-3);
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding:0px 4px 0 0;
+}
+
+
+.container_first {
+  background: #11151D;
+  border: 1px solid black;
+  box-shadow: black -4px 4px;
+  width: 500px;
+}
+
+.wysh_header {
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 18px;
+  background: var(--deg-2);
+  color: #000000;
+  font-family: var(--font-1);
+  font-weight: 300;
+  font-size: 12px;
+}
+
+.wysh_copy {
+  letter-spacing: 2px;
+  font-family: var(--police-3);
+}
+
+.wysh_bio {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: justify;
+  font-family: var(--font-1);
+  font-weight: 300;
+  font-size: 12px;
+}
+
+img.wysh_profile {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  box-shadow: black -4px 4px;
+}
+
+.sous_bio {
+  padding: 10px;
+}
+
+.list_bio {
+  display:flex;
+  padding: 10px;
+  flex-direction: column;
+}
+
+.list_bio ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.list_bio li {
+  font-size: 12px;
+  padding: 4px;
+}
+
+.username {
+  font-size: 14px;
+}
+
+.wysh-feed {
+  margin-top: -30px;
+  padding-bottom: 10px;
+    max-height:330px;
+  overflow:auto;
+}
+
+img.wysh_img {
+  margin: 5px;
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+}
+
+/*POSTER UNE PHOTO*/
+
+.container_wysh {
+  background: #11151D;
+  border: 1px solid black;
+  box-shadow: black -4px 4px;
+  width: 450px;
+  height: 550px;
+}
+
+.container_header {
+  font-family: var(--font-1);
+  font-weight: 300;
+  font-size: 12px;
+  display: flex;
+  padding: 20px;
+  margin: auto;
+  align-items: center;
+  justify-content: space-between;
+}
+
+img.post_img {
+  width:400px;
+  height:400px;
+  object-fit: cover;
+}
+
+.icons_by {
+  font-size: 16px;
+}
+
+.caption {
+  display: flex;
+    align-items: center;
+    padding: 10px;
+    color: lightgrey;
+    font-family: var(--font-1);
+    font-weight: 300;
+}
+
+img.profilepic {
+  height:50px;
+  width: 50px;
+  border-radius: 50px;
+  object-fit:cover;
+  margin-right: 10px;
+}
+
+.first_wysh {
+  display: flex;
+    flex-direction: column;
+    text-align: justify;
+    font-family: var(--font-1);
+    margin-left: 10px;
+    font-size: 11px;
+}
+
+/*COMMENT*/
+
+.wysh_box {
+  align-items: center;
+  display: flex;
+  background: #11151D;
+  box-shadow: black -4px 4px;
+  border: 1px solid black;
+  text-align: left !important;
+  padding: 10px;
+  max-width: 500px;
+  max-height: 80px;
+  overflow: hidden;
+  color: lightgrey;
+  font-family: var(--police-3);
+  text-transform: lowercase;
+}
