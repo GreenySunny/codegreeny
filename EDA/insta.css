@@ -45,7 +45,6 @@ b1 {
   padding: 20px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   text-align: justify;
   font-family: var(--font-1);
   font-weight: 300;
