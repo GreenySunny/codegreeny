@@ -215,12 +215,7 @@ plu {
   font-style: normal;
 }
 
-pp, ppb {
-  color: var(--d1);
-  font-size: 10px;
-  font-style: italic;
-  letter-spacing: 5px;
-}
+
 
 .dark pp, .dark ppb {
   color: inherit !important;
