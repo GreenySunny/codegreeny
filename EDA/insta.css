@@ -42,7 +42,7 @@ b1 {
 }
 
 .wysh_bio {
-  padding: 20px;
+  padding:0 20px 20px 20px;
   display: flex;
   align-items: center;
   text-align: justify;
