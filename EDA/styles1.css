@@ -1,0 +1,191 @@
+.second_texte {
+ width:65% !important; 
+  font-size:12px;
+  margin-left:26px;
+}
+
+
+c1 {
+    font-family: var(--font-7);
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: lowercase;
+    color: #A5B8E4 !important;
+  font-size:inherit;
+}
+
+c1i {
+    font-family: var(--font-7);
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: lowercase;
+    color: #A5B8E4 !important;
+    font-style:italic;
+    font-size:13px;
+}
+
+.cadre_corps {
+    text-align: justify;
+    background: var(--fond-c3);
+    padding: 10px;
+    font-family: var(--font-1);
+    font-weight: 350;
+    font-size: 12px;
+    line-height: 19px;
+    color: var(--para-c1);
+    margin-top: -16px;
+    width:80%;
+  border-radius:5px;
+  margin:auto;
+}
+
+.cadre_corps2 {
+    text-align: justify;
+    background: var(--fond-c3);
+    padding:10px 26px 26px 26px;
+    font-family: var(--font-1);
+    font-weight: 350;
+    font-size: 12px;
+    line-height: 19px;
+    color: var(--para-c1);
+    margin-top: -16px;
+    width:95%;
+  border-radius:5px;
+  margin:auto;
+}
+
+/* 1. La BOÎTE EXTÉRIEURE (Gère la taille, le padding, et devient le conteneur Flex) */
+.cadre_corps3 {
+    /* Styles Esthétiques (couleur, police, bordure...) */
+    background: var(--fond-c3);
+    font-family: var(--font-1);
+    
+    /* Contraintes de la Boîte */
+    width: 90%;
+    max-height: 500px; /* La hauteur fixe que vous voulez */
+    margin: auto;
+    
+    /* Le PADDING SOUHAITÉ est ici ! */
+    padding: 24px; 
+    
+    /* MODÈLE FLEXBOX (Le secret de la simplicité) */
+    display: flex; /* Active le mode Flexbox */
+    flex-direction: column; /* Le contenu s'aligne verticalement */
+    
+    /* IMPORTANT : box-sizing doit être border-box pour inclure le padding */
+    box-sizing: border-box; 
+    
+    /* Le reste de vos styles de texte... */
+    text-align: justify;
+    font-weight: 350;
+    font-size: 12px;
+    line-height: 19px;
+    color: inherit;
+}
+
+/* 2. Le CONTENEUR INTÉRIEUR (Gère le Défilement) */
+.cadre_corpsint {
+    /* Le contenu doit remplir l'espace restant après que le padding de la boîte mère ait été appliqué. */
+    flex-grow: 1; /* Permet à cet élément de s'étendre et de remplir tout l'espace restant */
+    
+    /* GESTION CRITIQUE DU DÉFILEMENT */
+    overflow-y: auto; /* Active le défilement uniquement sur cet élément */
+    
+    /* Suppression des styles problématiques précédents */
+    position: static; 
+    max-height: initial;
+    /* Pas de padding ici ! */
+}
+
+i5 {
+    padding: 0px 3px;
+    font-family: 'Geist Mono';
+    font-weight: 600;
+    font-size:12px;
+    color: #fff;
+    background: var(--deg-2);
+    letter-spacing: 0;
+    text-transform: uppercase;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+deg1 {
+    padding: 0px 3px;
+    font-family: 'bodoni moda';
+    font-weight: 600;
+    font-size:inherit;
+  font-style:italic;
+    color: #fff;
+    background: var(--deg-2);
+    letter-spacing: 0;
+    text-transform: lowercase;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+deg-c {
+    padding: 0px 3px;
+    font-family: 'bodoni moda';
+    font-weight: 600;
+    font-size:inherit;
+  font-style:italic;
+    color: #fff;
+    background: var(--deg-c);
+    letter-spacing: 0;
+    text-transform: lowercase;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+deg-o2 {
+    padding: 0px 3px;
+    font-family: 'bodoni moda';
+    font-weight: 600;
+    font-size:inherit;
+  font-style:italic;
+    color: #fff;
+    background: var(--deg-ouest);
+    letter-spacing: 0;
+    text-transform: lowercase;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+deg-e {
+    padding: 0px 3px;
+    font-family: 'bodoni moda';
+    font-weight: 600;
+    font-size:inherit;
+  font-style:italic;
+    color: #fff;
+    background: var(--deg-e);
+    letter-spacing: 0;
+    text-transform: lowercase;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.text_corps {
+  width:80% !important; 
+  margin-left:16px;
+  font-size:12px;
+  margin-top:5px;
+}
+
+.titre_admin h3{
+    border-bottom:1px solid white;
+  padding-bottom: 3px;
+  margin: 0;
+ color: white;
+background: var(--deg-2);
+text-transform: uppercase;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+  font-family: 'Playfair Display' !important;
+  font-size: 18px;
+  letter-spacing: -1px;
+  font-weight: 500;
+  text-transform: lowercase;
+  border-radius:2px;
+  width:80% !important; 
+  margin-left:16px;
+}
