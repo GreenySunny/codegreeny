@@ -156,7 +156,8 @@ img.profilepic {
 }
 /* Ajoute cette règle pour contrôler les smileys/images dans la légende */
 .first_wysh img {
-  max-height: 15px; /* ou la taille que tu veux */
+  max-height: 15px;
+   max-width: 15px;/* ou la taille que tu veux */
   width: auto;
   vertical-align: middle;
   display: inline-block;
