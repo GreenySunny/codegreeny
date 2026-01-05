@@ -152,10 +152,8 @@ img.profilepic {
   font-size: 11px;
   }
 .first_wysh img {
-  display: inline-block;
-  vertical-align: middle;
-  max-height: 1em; /* S'adapte à la taille du texte */
-  width: auto;
+  display: inline;
+  vertical-align: top;
   margin: 0 2px;
 }
 
