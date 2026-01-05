@@ -130,11 +130,11 @@ img.post_img {
 
 .caption {
   display: flex;
-    align-items: center;
-    padding: 10px;
-    color: lightgrey;
-    font-family: var(--font-1);
-    font-weight: 300;
+  align-items: flex-start; /* Change center par flex-start */
+  padding: 10px;
+  color: lightgrey;
+  font-family: var(--font-1);
+  font-weight: 300;
 }
 
 img.profilepic {
@@ -147,11 +147,19 @@ img.profilepic {
 
 .first_wysh {
   display: flex;
-    flex-direction: column;
-    text-align: justify;
-    font-family: var(--font-1);
-    margin-left: 10px;
-    font-size: 11px;
+  flex-direction: column;
+  text-align: justify;
+  font-family: var(--font-1);
+  margin-left: 10px;
+  font-size: 11px;
+  align-self: flex-start; /* Ajoute cette ligne */
+}
+/* Ajoute cette règle pour contrôler les smileys/images dans la légende */
+.first_wysh img {
+  max-height: 15px; /* ou la taille que tu veux */
+  width: auto;
+  vertical-align: middle;
+  display: inline-block;
 }
 
 /*COMMENT*/
