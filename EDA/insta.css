@@ -146,15 +146,11 @@ img.profilepic {
 }
 
 .first_wysh {
-  display: flex;
-  flex-direction: column;
   text-align: justify;
   font-family: var(--font-1);
   margin-left: 10px;
   font-size: 11px;
-  flex-shrink: 0;
-  align-self: flex-start; /* Ajoute cette ligne */
-}
+  }
 .first_wysh img {
   display: inline-block;
   vertical-align: middle;
