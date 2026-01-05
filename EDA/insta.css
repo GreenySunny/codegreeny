@@ -154,13 +154,12 @@ img.profilepic {
   font-size: 11px;
   align-self: flex-start; /* Ajoute cette ligne */
 }
-/* Ajoute cette règle pour contrôler les smileys/images dans la légende */
 .first_wysh img {
-  max-height: 15px;
-   max-width: 15px;/* ou la taille que tu veux */
-  width: auto;
-  vertical-align: middle;
   display: inline-block;
+  vertical-align: middle;
+  max-height: 1em; /* S'adapte à la taille du texte */
+  width: auto;
+  margin: 0 2px;
 }
 
 /*COMMENT*/
