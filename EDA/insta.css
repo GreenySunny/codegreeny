@@ -144,19 +144,20 @@ img.profilepic {
   object-fit:cover;
   margin-right: 10px;
 }
-
 .first_wysh {
+    display: inline;
   text-align: justify;
   font-family: var(--font-1);
   margin-left: 10px;
   font-size: 11px;
-  }
-.first_wysh img {
-  display: inline;
-  vertical-align: top;
-  margin: 0 2px;
+  height:15px;
+  align-self: flex-start; /* Ajoute cette ligne */
 }
 
+.first_wysh * {
+  display: inline;
+  margin: 0 2px;
+}
 /*COMMENT*/
 
 .wysh_box {
