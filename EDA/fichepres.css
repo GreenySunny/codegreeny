@@ -3,6 +3,7 @@
   height:70px !important;
   object-fit:cover;
   margin-left:20px;
+  vertical-align:top;
 }
 
 .fiche_admin {
