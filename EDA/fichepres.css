@@ -39,8 +39,8 @@
 }
 
 .presaimg2 {
-  width:130px;
-  height:208px;
+  width:135px !important;
+  height:216px !important;
   object-fit:cover;
   padding:0px;
   
