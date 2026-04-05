@@ -1,0 +1,6 @@
+@font-face {
+    font-family: 'Venose'; 
+    src: url('Venose.ttf') format('TrueType'); /* <--- Le chemin vers le fichier italique */
+    font-weight: normal;  
+    font-style: normal;  /* <--- On spécifie que c'est la version italique */
+}
