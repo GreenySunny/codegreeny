@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Mean'; 
-    src: url('MEANI.TTF') format('truetype'); /* <--- Le chemin vers le fichier italique */
+    src: url('mean.TTF') format('truetype'); /* <--- Le chemin vers le fichier italique */
     font-weight: normal;  
     font-style: normal;  /* <--- On spécifie que c'est la version italique */
 }
