@@ -102,9 +102,8 @@
     font-style: normal;
 }
 @font-face {
-    font-family: "Meani";
-    src: url("https://fontsforyou.com/fonts/m/Meani.ttf");
-}
-.your-style {
-    font-family: "Meani";
+    font-family: 'Meani';
+    src: url("https://fontsforyou.com/fonts/m/Meani.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
